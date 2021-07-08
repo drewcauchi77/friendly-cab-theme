@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import Header from './components/partials/Header'
-import Footer from './components/partials/Footer'
+import Header from './components/partials/global/Header'
+import Footer from './components/partials/global/Footer'
 
 export default {
     components: {
@@ -17,7 +17,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
