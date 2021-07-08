@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <div class="page-content" v-if="!isHomeLoading">
+
             <Introduction />
             <HowItWorks />
             <Cab />
@@ -39,7 +40,3 @@ export default {
     mixins: [setHomeContentMixin]
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
