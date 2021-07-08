@@ -1,15 +1,11 @@
 <template>
     <div class="container">
-        <h1>Footer</h1>
+        <h1>SERVICES SECTION</h1>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Footer'
+    name: 'ServicesSection'
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
