@@ -1,6 +1,7 @@
 <template>
     <div class="container">
-        <div class="page-content" v-if="!loading">
+        <div class="page-content" v-if="!isHomeLoading">
+
             <Introduction />
             <HowItWorks />
             <Cab />
@@ -23,6 +24,8 @@ import Testimonials from '../partials/home/Testimonials'
 
 import Loading from '../partials/global/Loading'
 
+import { setHomeContentMixin } from '../../mixins'
+
 export default {
     name: 'Home',
     components: {
@@ -34,10 +37,6 @@ export default {
         Testimonials, 
         Loading
     },
-    data() {
-        return {
-            loading: false
-        }
-    },
+    mixins: [setHomeContentMixin]
 }
 </script>

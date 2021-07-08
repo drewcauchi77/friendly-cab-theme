@@ -1,11 +1,15 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="!isHomeLoading">
         <h1>CAB SECTION</h1>
+        <p>{{ allHomeContent.acf.cab_section }}</p>
     </div>
 </template>
 
 <script>
+import { setHomeContentMixin } from '../../../mixins'
+
 export default {
-    name: 'Cab'
+    name: 'Cab',
+    mixins: [setHomeContentMixin]
 }
 </script>
