@@ -2,10 +2,8 @@
     <div class="container">
         <div class="page-content" v-if="!loading">
             <BannerSection />
-            <AboutUs />
-            <Benefits />
-            <ServicesSection />
-            <Additional />
+            <Details />
+            <Form />
         </div>
 
         <Loading v-else />
@@ -14,22 +12,17 @@
 
 <script>
 import BannerSection from '../partials/global/BannerSection'
-import AboutUs from '../partials/about/AboutUs'
-import Benefits from '../partials/about/Benefits'
-import ServicesSection from '../partials/global/ServicesSection'
-import Additional from '../partials/about/Additional'
+import Details from '../partials/contact/Details'
+import Form from '../partials/contact/Form'
 
 import Loading from '../partials/global/Loading'
 
 export default {
-    name: 'About',
+    name: 'Contact',
     components: {
         BannerSection,
-        AboutUs,
-        Benefits,
-        ServicesSection,
-        Additional,
-        Loading
+        Details,
+        Form
     },
     data() {
         return {
