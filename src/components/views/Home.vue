@@ -1,7 +1,6 @@
 <template>
-    <div class="container">
-        <div class="page-content" v-if="!isHomeLoading">
-
+    <div class="container" v-if="!isHomeLoading">
+        <div class="page-content">
             <Introduction />
             <HowItWorks />
             <Cab />
@@ -10,8 +9,9 @@
             <Testimonials />
         </div>
 
-        <Loading v-else />
     </div>
+    
+    <Loading v-else />
 </template>
 
 <script>
