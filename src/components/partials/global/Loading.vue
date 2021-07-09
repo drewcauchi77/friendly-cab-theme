@@ -1,13 +1,20 @@
 <template>
-    <transition name="slide">
-        <div class="loading-container" style="background:red;">
-            <h1>LOADING...</h1>
+    <transition name="slide-slow">
+        <div class="loading-container">
+            <div class="spinner-container">
+                <div class="lds-ring">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
         </div>
     </transition>
 </template>
 
 <script>
 export default {
-    name: 'Loading'
+    name: 'Loading',
 }
 </script>

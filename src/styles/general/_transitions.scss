@@ -1,9 +1,11 @@
-.slide-leave-active, .slide-enter-active {
-    transition: 0.8s;
+.slide-slow-leave-active, .slide-slow-enter-active{
+    transition: 1.5s ease-out;
 }
-.slide-enter {
+
+.slide-slow-enter{
     transform: translate(100%, 0);
 }
-.slide-leave-to {
+
+.slide-slow-leave-to{
     transform: translate(-100%, 0);
 }
