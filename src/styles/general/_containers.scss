@@ -1,3 +1,13 @@
 body{
     margin: 0px;
 }
+
+section{
+    padding: 50px 0;
+}
+
+@media only screen and (min-width: $breakpointLarge){
+    section{
+        padding: 80px 0;
+    }
+}

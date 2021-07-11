@@ -1,7 +1,7 @@
 <template>
     <div class="container" v-if="!isHomeLoading">
         <h1>ADVANTAGES SECTION</h1>
-        <p>{{ allHomeContent.acf.advantages_section }}</p>
+        <p>{{ setAdvantagesSectionData }}</p>
     </div>
 </template>
 

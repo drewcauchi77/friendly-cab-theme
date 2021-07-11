@@ -1,7 +1,7 @@
 <template>
     <div class="container" v-if="!isHomeLoading">
         <h1>TESTIMONIALS SECTION</h1>
-        <p>{{ allHomeContent.acf.testimonials_section }}</p>
+        <p>{{ setTestimonialsSectionData }}</p>
     </div>
 </template>
 

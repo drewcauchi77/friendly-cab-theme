@@ -1,7 +1,7 @@
 <template>
     <div class="container" v-if="!isHomeLoading">
         <h1>HOME BANNER + BOOK CAB FORM</h1>
-        <p v-if="allHomeContent.acf.introduction_section">{{ allHomeContent.acf.introduction_section }}</p>
+        <p>{{ setIntroductionSectionData }}</p>
     </div>
 </template>
 

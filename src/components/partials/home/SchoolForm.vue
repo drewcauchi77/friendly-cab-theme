@@ -1,8 +1,13 @@
 <template>
-    <div class="container" v-if="!isHomeLoading">
-        <h1>SCHOOL FORM SECTION</h1>
-        <p>{{ allHomeContent.acf.school_form_section }}</p>
-    </div>
+    <section v-if="!isHomeLoading">
+        <div class="container">
+            <div class="section-title text-center lower-below-text-border" v-html="setSchoolFormSectionData.title"></div>
+
+            <div class="school-form">
+                
+            </div>
+        </div>
+    </section>
 </template>
 
 <script>
