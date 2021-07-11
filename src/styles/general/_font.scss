@@ -5,3 +5,49 @@ h1, h2, h3, h4, h5, h6, span, p, ul, li, a{
     padding: 0px;
     font-family: 'Montserrat', sans-serif;
 }
+
+h2{
+    font-size: 30px !important;
+    color: $black;
+    font-weight: 700 !important;
+    strong{
+        color: $blue;
+    }
+}
+
+.section-title.lower-below-text-border, .section-title h2{
+    &:after{
+        content:' ';
+        display: block;
+        border: 2px solid $blue;
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+    }
+}
+
+.section-title.lower-below-text-border{
+    &:after{
+        width: 70px;
+        margin: 0 auto;
+    }
+}
+
+.section-title h2{
+    &:after{
+        width: 120px;
+        margin: 15px auto;
+    }
+}
+
+@media only screen and (min-width: $breakpointLarge){
+    h2{
+        font-size: 50px !important;
+    }
+
+    .section-title.lower-below-text-border, .section-title h2{
+        &:after{
+            border-width: 3px;
+        }
+    }
+}
