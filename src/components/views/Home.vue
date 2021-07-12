@@ -1,14 +1,13 @@
 <template>
-    <div class="container" v-if="!isHomeLoading">
+    <div class="home-content" v-if="!isHomeLoading">
         <div class="page-content">
             <Introduction />
             <HowItWorks />
             <Cab />
-            <SchoolForm />
+            <SchoolForm v-if="setSchoolFormSectionData.enable_section" />
             <Advantages />
             <Testimonials />
         </div>
-
     </div>
     
     <Loading v-else />
