@@ -1,9 +1,16 @@
 <template>
-    <div class="container" v-if="!isHomeLoading">
-        <h1>HOME BANNER + BOOK CAB FORM</h1>
-        <p v-if="allHomeContent.acf.introduction_section">{{ allHomeContent.acf.introduction_section }}</p>
+    <div class="container home-banner-section row" v-if="!isHomeLoading">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <h1 class="title">{{ allHomeContent.acf.introduction_section.title}}</h1>
+            <p>{{ allHomeContent.acf.introduction_section.tagline}}</p>
+            <a :href="allHomeContent.acf.introduction_section.button.link">{{allHomeContent.acf.introduction_section.button.text}}</a>
+        </div>
+         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+        </div>
     </div>
 </template>
+
+
 
 <script>
 import { setHomeContentMixin } from '../../../mixins'
