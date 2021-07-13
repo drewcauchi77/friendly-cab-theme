@@ -1,9 +1,9 @@
 <template>
     <div class="container home-banner-section row" v-if="!isHomeLoading">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
-            <h1 class="title">{{ allHomeContent.acf.introduction_section.title}}</h1>
-            <p>{{ allHomeContent.acf.introduction_section.tagline}}</p>
-            <a :href="allHomeContent.acf.introduction_section.button.link">{{allHomeContent.acf.introduction_section.button.text}}</a>
+            <h1 class="title">{{ setIntroductionSectionData.title}}</h1>
+            <div v-html="setIntroductionSectionData.tagline"></div>
+            <a :href="setIntroductionSectionData.button.link">{{setIntroductionSectionData.button.text}}</a>
         </div>
          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
         </div>
