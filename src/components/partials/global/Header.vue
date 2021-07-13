@@ -8,7 +8,6 @@
             <p v-html="allHeaderData.acf.additional_details.text"></p>
         </div>
     </div>
-     <Loading v-else />
 </template>
 
 <script>
@@ -38,7 +37,6 @@ export default {
             const response = await axios.get('/wp-json/wp/v2/menus?slug=header')
 
             this.allHeaderData = response.data[0]
-            console.log(this.allHeaderData);
             this.loading = false
         }
         
