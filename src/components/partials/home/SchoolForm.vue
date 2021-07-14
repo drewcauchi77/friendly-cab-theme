@@ -3,7 +3,7 @@
         <div class="container">
             <div class="section-title text-center lower-below-text-border" v-html="setSchoolFormSectionData.title"></div>
 
-            <div class="school-form-container">
+            <!-- <div class="school-form-container">
                 <form v-on:submit.prevent="sendApplication">
                     <fieldset>
                         <h3>Transport Information</h3>
@@ -171,7 +171,7 @@
                         </div>
                     </fieldset>
                 </form>
-            </div>
+            </div> -->
         </div>
     </section>
 </template>
