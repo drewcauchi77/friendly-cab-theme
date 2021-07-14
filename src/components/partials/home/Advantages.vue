@@ -1,7 +1,7 @@
 <template>
     <div class="container" v-if="!isHomeLoading">
         <h1>ADVANTAGES SECTION</h1>
-        <p>{{ setAdvantagesSectionData }}</p>
+        <!-- <p>{{ setAdvantagesSectionData }}</p> -->
     </div>
 </template>
 
