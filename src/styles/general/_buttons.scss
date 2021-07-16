@@ -1,0 +1,19 @@
+.sm-button-blue{
+    display: block;
+    background: $blue;
+    color: $white;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 25px;
+    width: 115px;
+    text-align: center;
+    transition: all 0.4s ease;
+    padding: 11px;
+    border: 2px solid $blue;
+
+    &:hover{
+        color: $blue;
+        background: $white;
+    }
+}

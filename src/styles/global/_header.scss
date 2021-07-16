@@ -2,6 +2,7 @@ header{
     position: fixed;
     width: 100%;
     top: 45px;
+    z-index: 10;
     .header-container{
         background: $white;
         padding: 5px 15px;
@@ -116,6 +117,7 @@ header{
                 height: 100vh;
                 transition: 0.5s all;
                 background-color: $white;
+                border-radius: 0 10px 10px 0;
                 .navigation-menu{
                     position: relative;
                     height: 100%;
