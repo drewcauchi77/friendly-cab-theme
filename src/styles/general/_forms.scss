@@ -1,0 +1,40 @@
+fieldset{
+    border: none;
+    padding: 0;
+    div{
+        padding-bottom: 20px;
+    }
+    label{
+        font-size: 12px;
+        display: block;
+        padding-bottom: 15px;
+        font-weight: 600;
+    }
+}
+
+select, textarea{
+    width: 100%;
+    padding: 11px 5%;
+    border: 1px solid $light-grey;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 3px 3px 6px 6px $light-grey;
+}
+
+textarea{
+    height: 200px;
+    border-radius: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+select{
+    height: 45px;
+    border-radius: 50px;
+    cursor: pointer;
+    option{
+        border: 1px solid $light-grey;
+        border-radius: 0 10px 10px 0;
+    }
+}

@@ -1,14 +1,14 @@
 <template>
-    <section v-if="!isHomeLoading">
+    <section class="school-form-section" v-if="!isHomeLoading">
         <div class="container">
-            <div class="section-title text-center lower-below-text-border" v-html="setSchoolFormSectionData.title"></div>
+            <div class="section-title lower-below-text-border" v-html="setSchoolFormSectionData.title"></div>
 
-            <!-- <div class="school-form-container">
+            <div class="school-form-container">
                 <form v-on:submit.prevent="sendApplication">
-                    <fieldset>
+                    <fieldset class="transport-info" v-if="currentStep == 1">
                         <h3>Transport Information</h3>
-                        <div>
-                            <label for="prev_year_use">Have you made use of our school transport system during the last scholastic year?</label>
+                        <div class="select-container">
+                            <label for="prev_year_use">Have you made use of our school transport system during the last scholastic year? (*)</label>
                             <select name="prev_year_use" id="prev_year_use" v-model="transport_info.prev_year_use" required>
                                 <option value="" disabled hidden>Choose:</option>
                                 <option>Yes</option>
@@ -16,8 +16,8 @@
                             </select>
                         </div>
 
-                        <div>
-                            <label for="transport_days">Which days do you require transport?</label>
+                        <div class="select-container">
+                            <label for="transport_days">Which days do you require transport? (*)</label>
                             <select name="transport_days" id="transport_days" v-model="transport_info.transport_days" required>
                                 <option value="" selected disabled hidden>Choose:</option>
                                 <option>Monday to Friday</option>
@@ -25,22 +25,34 @@
                             </select>
                         </div>
 
-                        <div>
-                            <label class="section-title">Please specify which days you require transport:</label>
-                            <label for="monday">Monday</label>
-                            <input type="checkbox" id="monday" value="Monday" v-model="transport_info.specify_days">
-                            <label for="tuesday">Tuesday</label>
-                            <input type="checkbox" id="tuesday" value="Tuesday" v-model="transport_info.specify_days">
-                            <label for="wednesday">Wednesday</label>
-                            <input type="checkbox" id="wednesday" value="Wednesday" v-model="transport_info.specify_days">
-                            <label for="thursday">Thursday</label>
-                            <input type="checkbox" id="thursday" value="Thursday" v-model="transport_info.specify_days">
-                            <label for="friday">Friday</label>
-                            <input type="checkbox" id="friday" value="Friday" v-model="transport_info.specify_days">
+                        <div class="checkbox-container" v-if="transport_info.transport_days == 'Specific days only'">
+                            <label class="section-title">Please specify which days you require transport: (*)</label>
+                            <div class="checkbox-container-options">
+                                <div>
+                                    <label for="monday">Monday</label>
+                                    <input type="checkbox" id="monday" value="Monday" v-model="transport_info.specify_days">
+                                </div>
+                                <div>
+                                    <label for="tuesday">Tuesday</label>
+                                    <input type="checkbox" id="tuesday" value="Tuesday" v-model="transport_info.specify_days">
+                                </div>
+                                <div>
+                                    <label for="wednesday">Wednesday</label>
+                                    <input type="checkbox" id="wednesday" value="Wednesday" v-model="transport_info.specify_days">
+                                </div>
+                                <div>
+                                    <label for="thursday">Thursday</label>
+                                    <input type="checkbox" id="thursday" value="Thursday" v-model="transport_info.specify_days">
+                                </div>
+                                <div>
+                                    <label for="friday">Friday</label>
+                                    <input type="checkbox" id="friday" value="Friday" v-model="transport_info.specify_days">
+                                </div>
+                            </div>
                         </div>
 
-                        <div>
-                            <label for="am_pm">When do you require transport?</label>
+                        <div class="select-container">
+                            <label for="am_pm">When do you require transport? (*)</label>
                             <select name="am_pm" id="am_pm" v-model="transport_info.am_pm" required>
                                 <option value="" selected disabled hidden>Choose:</option>
                                 <option>Morning only</option>
@@ -49,8 +61,8 @@
                             </select>
                         </div>
 
-                        <div>
-                            <label for="school">Which school do you require transport to?</label>
+                        <div class="select-container">
+                            <label for="school">Which school do you require transport to? (*)</label>
                             <select name="school" id="school" v-model="transport_info.school" required>
                                 <option value="" selected disabled hidden>Choose:</option>
                                 <option v-for="(school, index) in this.schoolNames" :key="index">{{ school.school_name }}</option>
@@ -58,30 +70,30 @@
                         </div>
                     </fieldset>
 
-                    <fieldset>
+                    <fieldset class="pick-up-drop-off-info" v-if="currentStep == 2">
                         <h3>Pick-Up &amp; Drop-Off Information</h3>
-                        <div>
+                        <div class="textarea-container">
                             <label for="pick_up_address">Please provide your preferred pick-up address:</label>
                             <textarea name="pick_up_address" id="pick_up_address" v-model="pick_up_drop_off_info.pick_up_address" placeholder="Insert pick-up address here" required></textarea>
                         </div>
 
-                        <div>
+                        <div class="checkbox-container">
                             <label for="same_addresses">Same address for drop-off address as pick-up address?</label>
-                            <input type="checkbox" name="same_addresses" id="same_addresses" value="yes" v-model="pick_up_drop_off_info.same_addresses">
+                            <input type="checkbox" name="same_addresses" id="same_addresses" value="1" v-model="pick_up_drop_off_info.same_addresses" @click="setSameAddresses">
                         </div>
 
-                        <div>
+                        <div class="textarea-container">
                             <label for="drop_off_address">Please provide your preferred drop-off address:</label>
                             <textarea name="drop_off_address" id="drop_off_address" v-model="pick_up_drop_off_info.drop_off_address" placeholder="Insert drop-off address here" required></textarea>
                         </div>
 
-                        <div>
+                        <div class="textarea-container">
                             <label for="special_instructions">Special Instructions</label>
                             <textarea name="special_instructions" id="special_instructions" v-model="pick_up_drop_off_info.special_instructions" placeholder="Example: Just in front of Maypole"></textarea>
                         </div>
                     </fieldset>
 
-                    <fieldset>
+                    <fieldset v-if="currentStep == 3">
                         <h3>Student Information</h3>
                         <div>
                             <label for="name_of_student">Name of student:</label>
@@ -115,7 +127,7 @@
                         </div>
                     </fieldset>
 
-                    <fieldset>
+                    <fieldset v-if="currentStep == 4">
                         <h3>Parent/Guardian Information</h3>
                         <div>
                             <label for="name_of_parentguardian">Name of parent/guardian:</label>
@@ -148,7 +160,7 @@
                         </div>
                     </fieldset>
 
-                    <fieldset>
+                    <fieldset v-if="currentStep == 5">
                         <h3>Disclaimer and Consent Forms</h3>
                         <div v-for="(consent, index) in this.consentForms" :key="index">
                             <h4>{{ consent.consent_form.title }}</h4>
@@ -164,14 +176,28 @@
                         </div>
                     </fieldset>
 
-                    <fieldset>
+                    <fieldset v-if="currentStep == 6">
                         <h3>Confirm and Submit</h3>
                         <div class="submit-button button">
                             <button type="submit">Submit</button>
                         </div>
                     </fieldset>
                 </form>
-            </div> -->
+
+                <div class="step-navigator">
+                    <div class="prev-button nav-button">
+                        <span class="button-blue" v-show="currentStep !== 1" @click="currentStep--">Prev</span>
+                    </div>
+
+                    <div class="next-button nav-button">
+                        <span class="button-blue" v-show="currentStep !== finalStep" @click="checkStepData">Next</span>
+                    </div>
+                </div>
+
+                <div class="response">
+                    <span class="error-message" v-if="stepError">{{ this.stepError }}</span>
+                </div>
+            </div>
         </div>
     </section>
 </template>
@@ -185,6 +211,9 @@ export default {
     mixins: [setHomeContentMixin],
     data() {
         return {
+            currentStep: 1,
+            finalStep: 6,
+            stepError: '',
             schoolNames: [],
             schoolYears: [],
             consentForms: [],
@@ -198,7 +227,7 @@ export default {
             },
             pick_up_drop_off_info: {
                 pick_up_address: '',
-                same_addresses: '',
+                same_addresses: false,
                 drop_off_address: '',
                 special_instructions: ''
             },
@@ -272,6 +301,17 @@ export default {
             this.schoolNames = response.data[0].acf.list_of_schools
             this.schoolYears = response.data[0].acf.list_of_school_years
             this.consentForms = response.data[0].acf.agreementconsent_forms
+        },
+        checkStepData() {
+            switch (this.currentStep) {
+                case 1:
+                    if(this.transport_info.prev_year_use == '' || this.transport_info.am_pm == '' || this.transport_info.school == '' || (this.transport_info.transport_days == '' || (this.transport_info.transport_days == 'Specific days only' && this.transport_info.specify_days.length == 0))){
+                        this.stepError = 'Please fill in all required fields before proceeding to the next step'
+                    }else{
+                        this.currentStep++
+                    }
+                    break;
+            }
         },
     }
 }

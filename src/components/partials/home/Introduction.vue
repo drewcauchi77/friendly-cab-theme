@@ -1,17 +1,17 @@
 <template>
-    <div class="home-banner-section" v-if="!isHomeLoading" v-bind:style="{ backgroundImage: 'url(' + setIntroductionSectionData.background.url + ')' }">
+    <section class="home-banner-section" v-if="!isHomeLoading" v-bind:style="{ backgroundImage: 'url(' + setIntroductionSectionData.background.url + ')' }">
         <div class="container">
             <div class="left-section">
                 <div class="inner-sec">
                     <h1 class="title">{{ setIntroductionSectionData.title}}</h1>
                     <div class="tagline" v-html="setIntroductionSectionData.tagline"></div>
-                    <a class="sm-button-blue" :href="setIntroductionSectionData.button.link">{{setIntroductionSectionData.button.text}}</a>
+                    <a class="button-blue" :href="setIntroductionSectionData.button.link">{{setIntroductionSectionData.button.text}}</a>
                 </div>
             </div>
             <div class="right-section">
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 
