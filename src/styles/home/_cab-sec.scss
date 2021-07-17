@@ -1,0 +1,81 @@
+.home-cab-section{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    
+    &::before{
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        background: $black;
+        opacity: 0.7;
+        z-index: 0;
+    }
+
+    .container{
+        z-index: 1;
+        position: relative;
+
+        .lect-sec{
+            h2{
+                color: $white;
+                padding-bottom: 30px;
+            }
+
+            .normal-text-white{
+                padding-bottom: 30px;
+                max-width: 650px;
+                padding-right: 50px;
+            }
+        }
+
+        .right-sec{
+            text-align: center;
+            img{
+                width: 100%;
+                padding-top: 70px;
+                max-width: 700px;
+                text-align: center;
+            }
+        }
+
+       
+    }
+
+    
+}
+
+@media only screen and (min-width: $breakpointMedium){
+    .home-cab-section{
+        
+        
+    }
+}
+
+
+@media only screen and (min-width: $breakpointLarge){
+    .home-cab-section{
+        .container{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+
+            .lect-sec{
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                height: fit-content;
+                margin: auto;
+            }
+        }
+    }
+}

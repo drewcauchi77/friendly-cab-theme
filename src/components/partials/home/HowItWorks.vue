@@ -1,5 +1,5 @@
 <template>
-    <div class="container how-it-works" v-if="!isHomeLoading">
+    <section class="container how-it-works" v-if="!isHomeLoading">
         <div class="section-title text-center lower-below-text-border" v-html="setHowItWorksSectionData.title"></div>
         <div class="three-col-section">
             <div class="column" v-for="item in setHowItWorksSectionData.details" :key="item.item.title">
@@ -8,7 +8,7 @@
                 <p class="normal-text" v-html="item.item.text"></p>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>

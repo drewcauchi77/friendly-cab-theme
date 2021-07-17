@@ -1,5 +1,5 @@
 <template>
-    <div class="home-banner-section" v-if="!isHomeLoading" v-bind:style="{ backgroundImage: 'url(' + setIntroductionSectionData.background.url + ')' }">
+    <section class="home-banner-section" v-if="!isHomeLoading" v-bind:style="{ backgroundImage: 'url(' + setIntroductionSectionData.background.url + ')' }">
         <div class="container">
             <div class="left-section">
                 <div class="inner-sec">
@@ -11,7 +11,7 @@
             <div class="right-section">
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 

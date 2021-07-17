@@ -25,17 +25,16 @@
 @media only screen and (min-width: $breakpointMedium){
     .how-it-works{
         .three-col-section{
-            grid-template-columns: 1fr 1fr;
-
-            .column:nth-child(3){
-                grid-column: span 1;
-            }
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
         }
     }  
 }
 
 @media only screen and (min-width: $breakpointLarge){
     .how-it-works{
+        padding: 100px 0;
         .three-col-section{
             grid-template-columns: 1fr 1fr 1fr;
 

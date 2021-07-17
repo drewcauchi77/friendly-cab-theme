@@ -2,8 +2,8 @@
     <div class="home-content" v-if="!isHomeLoading">
         <div class="page-content">
             <Introduction />
-            <HowItWorks />
-            <Cab />
+            <HowItWorks v-if="setHowItWorksSectionData.enable_section" />
+            <Cab v-if="setCabSectionData.enable_section"/>
             <SchoolForm v-if="setSchoolFormSectionData.enable_section" />
             <Advantages />
             <Testimonials />
