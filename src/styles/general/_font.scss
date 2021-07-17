@@ -15,6 +15,18 @@ h2{
     }
 }
 
+h3{
+    font-size: 18px ;
+    color: $black;
+    font-weight: 700;
+
+    @media only screen and (min-width: $breakpointLarge){
+        font-size: 27px;
+        font-weight: bold;
+    }
+    
+}
+
 a{
     text-decoration: none;
 }
@@ -57,5 +69,15 @@ a{
         &:after{
             border-width: 3px;
         }
+    }
+}
+
+.normal-text{
+    font-size: 16px;
+    color: $grey;
+    font-weight: 600;
+
+    @media only screen and (min-width: $breakpointLarge){
+        font-size: 20px;
     }
 }
