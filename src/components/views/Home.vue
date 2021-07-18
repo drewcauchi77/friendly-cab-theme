@@ -36,6 +36,17 @@ export default {
         Testimonials, 
         Loading
     },
-    mixins: [setHomeContentMixin]
+    mixins: [setHomeContentMixin],
+    metaInfo() {
+        return {
+            title: 'Friendly Cab - Home',
+            meta: [
+                { name: 'description', content: 'Contact Friendly Cab to book your professional cab service' },
+                { property: 'og:title', content: 'Friendly Cab - Home'},
+                { property: 'og:site_name', content: 'Friendly Cab'},
+                { property: 'og:description', content: 'Contact Friendly Cab to book your professional cab service' }
+            ]
+        }
+    }
 }
 </script>
