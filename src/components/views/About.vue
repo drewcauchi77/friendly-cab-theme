@@ -1,15 +1,15 @@
 <template>
-    <div class="container">
-        <div class="page-content" v-if="!isAboutLoading">
+    <div class="about-content" v-if="!isAboutLoading">
+        <div class="page-content">
             <BannerSection v-bind:slug="'about'" />
             <AboutUs />
             <Benefits />
             <ServicesSection />
             <Additional />
         </div>
-
-        <Loading v-else />
     </div>
+
+    <Loading v-else />
 </template>
 
 <script>

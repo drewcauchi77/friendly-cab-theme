@@ -8,8 +8,11 @@
     .spinner-container{
         position: fixed;
         top: 0;
+        left: 0;
         height: 100vh;
         width: 100vw;
+        background: $white;
+        z-index: 999;
         .lds-ring {
             display: inline-block;
             position: relative;
