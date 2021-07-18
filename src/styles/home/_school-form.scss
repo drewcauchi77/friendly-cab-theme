@@ -1,0 +1,92 @@
+.school-form-section{
+    .container{
+        .school-form-container{
+            form{
+                fieldset{
+                    h3{
+                        text-align: center;
+                        padding-bottom: 20px;
+                        color: $black;
+                    }
+                }
+                .transport-info{
+                    .checkbox-container{
+                        .checkbox-container-options{
+                            display: grid;
+                            grid-template-columns: repeat(3, 1fr);
+                            grid-row-gap: 20px;
+                            grid-column-gap: 20px;
+                            label:not(.section-title){
+                                padding-bottom: 0;
+                                display: inline-block;
+                            }
+                            input{
+                                justify-self: center;
+                            }
+                            >div{
+                                padding: 0px;
+                                display: grid;
+                                grid-template-rows: auto auto;
+                                grid-row-gap: 5px;
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+                .pick-up-drop-off-info{
+                    .checkbox-container{
+                        display: grid;
+                        grid-template-columns: auto 50px;
+                        label{
+                            padding-bottom: 0px;
+                        }
+                        input{
+                            justify-self: center;
+                        }
+                    }
+                }
+            }
+            .step-navigator{
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                padding-top: 20px;
+                grid-column-gap: 25px;
+                .nav-button{
+                    width: fit-content;
+                    .button-blue{
+                        width: 100px;
+                    }
+                }
+                .prev-button{
+                    justify-self: end;
+                }
+            }
+            .response{
+                padding-top: 20px;
+                text-align: center;
+                .error-message{
+                    color: #ff0033;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $breakpointSmall){
+    .school-form-section{
+        .container{
+            .school-form-container{
+                form{
+                    fieldset{
+                        .checkbox-container{
+                            .checkbox-container-options{
+                                grid-template-columns: repeat(5, 1fr);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

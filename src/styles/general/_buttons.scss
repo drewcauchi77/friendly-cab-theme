@@ -1,19 +1,25 @@
-.sm-button-blue{
+.button-blue{
     display: block;
     background: $blue;
     color: $white;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
     border-radius: 25px;
-    width: 115px;
     text-align: center;
-    transition: all 0.4s ease;
-    padding: 11px;
+    transition: 0.5s all;
     border: 2px solid $blue;
-
+    padding: 15px 5%;
+    width: fit-content;
+    cursor: pointer;
     &:hover{
         color: $blue;
         background: $white;
+    }
+}
+
+@media only screen and (min-width: $breakpointLarge){
+    .button-blue{
+        font-size: 20px;
     }
 }

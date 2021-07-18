@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
 
-h1, h2, h3, h4, h5, h6, span, p, ul, li, a{
+h1, h2, h3, h4, h5, h6, span, p, ul, li, a, label{
     margin: 0px;
     padding: 0px;
     font-family: 'Montserrat', sans-serif;
@@ -47,6 +47,7 @@ a{
 }
 
 .section-title.lower-below-text-border{
+    padding-bottom: 40px;
     &:after{
         width: 70px;
         margin: 0 auto;
@@ -54,10 +55,17 @@ a{
 }
 
 .section-title h2{
+    text-align: center;
     &:after{
         width: 120px;
         margin: 15px auto;
     }
+}
+
+.normal-text{
+    font-size: 16px;
+    color: $grey;
+    font-weight: 600;
 }
 
 @media only screen and (min-width: $breakpointLarge){
@@ -70,14 +78,12 @@ a{
             border-width: 3px;
         }
     }
-}
 
-.normal-text{
-    font-size: 16px;
-    color: $grey;
-    font-weight: 600;
+    .section-title.lower-below-text-border{
+        padding-bottom: 50px;
+    }
 
-    @media only screen and (min-width: $breakpointLarge){
+    .normal-text{
         font-size: 20px;
     }
 }

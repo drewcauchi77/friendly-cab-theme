@@ -5,7 +5,7 @@
                 <div class="inner-sec">
                     <h1 class="title">{{ setIntroductionSectionData.title}}</h1>
                     <div class="tagline" v-html="setIntroductionSectionData.tagline"></div>
-                    <a class="sm-button-blue" :href="setIntroductionSectionData.button.link">{{setIntroductionSectionData.button.text}}</a>
+                    <a class="button-blue" :href="setIntroductionSectionData.button.link">{{setIntroductionSectionData.button.text}}</a>
                 </div>
             </div>
             <div class="right-section">

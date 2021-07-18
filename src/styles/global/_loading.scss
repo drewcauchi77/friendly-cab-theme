@@ -4,6 +4,7 @@
     height: 100vh;
     width: 180vw;
     background: linear-gradient(to right, $white 100vw, $blue 80vw);
+    z-index: 999;
     .spinner-container{
         position: fixed;
         top: 0;

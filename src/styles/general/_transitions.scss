@@ -1,5 +1,6 @@
 .slide-slow-leave-active, .slide-slow-enter-active{
     transition: 1.5s ease-out;
+    transition-delay: 0.5s;
 }
 
 .slide-slow-enter{
