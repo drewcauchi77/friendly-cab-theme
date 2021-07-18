@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <div class="page-content" v-if="!loading">
-            <BannerSection />
+        <div class="page-content" v-if="!isAboutLoading">
+            <BannerSection v-bind:slug="'about'" />
             <AboutUs />
             <Benefits />
             <ServicesSection />
@@ -21,6 +21,8 @@ import Additional from '../partials/about/Additional'
 
 import Loading from '../partials/global/Loading'
 
+import { setAboutContentMixin } from '../../mixins'
+
 export default {
     name: 'About',
     components: {
@@ -31,9 +33,16 @@ export default {
         Additional,
         Loading
     },
-    data() {
+    mixins: [setAboutContentMixin],
+    metaInfo() {
         return {
-            loading: false
+            title: 'Friendly Cab - About',
+            meta: [
+                { name: 'description', content: 'Have a look at what we offer and how we beat our competition' },
+                { property: 'og:title', content: 'Friendly Cab - About'},
+                { property: 'og:site_name', content: 'Friendly Cab'},
+                { property: 'og:description', content: 'Have a look at what we offer and how we beat our competition' }
+            ]
         }
     }
 }

@@ -4,9 +4,7 @@
     background-position: center;
     position: relative;
     overflow: hidden;
-    
     z-index: 0;
-
     &::before{
         content: '';
         position: absolute;
@@ -21,39 +19,32 @@
         opacity: 0.7;
         z-index: 0;
     }
-
     .container{
         display: grid;
         z-index: 1;
-
+        grid-row-gap: 60px;
         .column{
             z-index: 1;
             text-align: center;
             display: grid;
             grid-template-rows: minmax(75px, 150px);
-            padding-bottom: 60px;
-
             img{
                 max-height: 100px;
                 margin: 0 auto;
             }
-
             h4{
                 font-size: 18px;
                 color: $white;
                 font-weight: bold;
                 padding: 15px 0;
             }
-
             p{
                 color: #707070;
                 max-width: 280px;
                 margin: 0 auto;
                 font-weight: 700;
             }
-
         }
-
     }
 }
 
@@ -68,20 +59,16 @@
         padding: 150px 0;
         .container{
             .column{
-                
                 h4{
                     font-size: 28px;
                 }
-    
                 p{
                     color: #707070;
                     max-width: 280px;
                     margin: 0 auto;
                     font-weight: 700;
                 }
-    
             }
-    
         }
     }
 }

@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="page-content" v-if="!loading">
-            <BannerSection />
+            <BannerSection v-bind:slug="'contact'" />
             <Details />
             <Form />
         </div>
@@ -27,6 +27,17 @@ export default {
     data() {
         return {
             loading: false
+        }
+    },
+    metaInfo() {
+        return {
+            title: 'Friendly Cab - Contact',
+            meta: [
+                { name: 'description', content: 'Contact us and let us know your request' },
+                { property: 'og:title', content: 'Friendly Cab - Contact'},
+                { property: 'og:site_name', content: 'Friendly Cab'},
+                { property: 'og:description', content: 'Contact us and let us know your request' }
+            ]
         }
     }
 }
