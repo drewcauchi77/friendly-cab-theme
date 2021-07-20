@@ -22,6 +22,7 @@
                             }
                             input{
                                 justify-self: center;
+                                align-self: center;
                             }
                             >div{
                                 padding: 0px;
@@ -42,6 +43,68 @@
                         }
                         input{
                             justify-self: center;
+                        }
+                    }
+                }
+                .student-info{
+                    .checkbox-container{
+                        .checkbox-container-options{
+                            padding-bottom: 0px;
+                            div{
+                                display: grid;
+                                grid-template-columns: 250px 30px;
+                                label{
+                                    padding-bottom: 0px;
+                                }
+                            }
+                        }
+                    }
+                }
+                .consent-info{
+                    .consent-container{
+                        h4{
+                            font-size: 14px;
+                            padding-bottom: 20px;
+                        }
+                        .consent-form-text{
+                            margin-bottom: 20px;
+                            height: 250px; 
+                            overflow-y: scroll;
+                            p, ul, ol, li, a{
+                                font-size: 12px;
+                            }
+                            a{
+                                text-decoration: underline;
+                                color: $black;
+                            }
+                            li{
+                                padding-bottom: 5px;
+                            }
+                        }
+                    }
+                    .checkbox-container{
+                        padding-bottom: 0px;
+                        display: grid;
+                        grid-template-columns: auto 50px;
+                        label{
+                            font-size: 12px;
+                            padding-bottom: 0px;
+                            a{
+                                text-decoration: underline;
+                                color: $black;
+                            }
+                        }
+                        input{
+                            justify-self: center;
+                            align-self: center;
+                        }
+                    }
+                }
+                .confirm-info{
+                    .submit-button{
+                        button{
+                            width: 200px;
+                            margin: 0 auto;
                         }
                     }
                 }
