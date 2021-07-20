@@ -73,17 +73,17 @@
                     <fieldset class="pick-up-drop-off-info" v-if="currentStep == 2">
                         <h3>Pick-Up &amp; Drop-Off Information</h3>
                         <div class="textarea-container">
-                            <label for="pick_up_address">Please provide your preferred pick-up address:</label>
+                            <label for="pick_up_address">Please provide your preferred pick-up address: (*)</label>
                             <textarea name="pick_up_address" id="pick_up_address" v-model="pick_up_drop_off_info.pick_up_address" placeholder="Insert pick-up address here" required></textarea>
                         </div>
 
                         <div class="checkbox-container">
                             <label for="same_addresses">Same address for drop-off address as pick-up address?</label>
-                            <input type="checkbox" name="same_addresses" id="same_addresses" value="1" v-model="pick_up_drop_off_info.same_addresses" @click="setSameAddresses">
+                            <input type="checkbox" name="same_addresses" id="same_addresses" value="1" v-model="pick_up_drop_off_info.same_addresses">
                         </div>
 
                         <div class="textarea-container">
-                            <label for="drop_off_address">Please provide your preferred drop-off address:</label>
+                            <label for="drop_off_address">Please provide your preferred drop-off address: (*)</label>
                             <textarea name="drop_off_address" id="drop_off_address" v-model="pick_up_drop_off_info.drop_off_address" placeholder="Insert drop-off address here" required></textarea>
                         </div>
 
@@ -93,93 +93,101 @@
                         </div>
                     </fieldset>
 
-                    <fieldset v-if="currentStep == 3">
+                    <fieldset class="student-info" v-if="currentStep == 3">
                         <h3>Student Information</h3>
-                        <div>
-                            <label for="name_of_student">Name of student:</label>
-                            <input name="name_of_student" id="name_of_student" v-model="student_info.name_of_student" placeholder="Insert name here" required>
+                        <div class="input-container">
+                            <label for="name_of_student">Name of student: (*)</label>
+                            <input type="text" name="name_of_student" id="name_of_student" v-model="student_info.name_of_student" placeholder="Insert name here" required>
                         </div>
 
-                        <div>
-                            <label for="surname_of_student">Surname of student:</label>
-                            <input name="surname_of_student" id="surname_of_student" v-model="student_info.surname_of_student" placeholder="Insert surname here" required>
+                        <div class="input-container">
+                            <label for="surname_of_student">Surname of student: (*)</label>
+                            <input type="text" name="surname_of_student" id="surname_of_student" v-model="student_info.surname_of_student" placeholder="Insert surname here" required>
                         </div>
 
-                        <div>
-                            <label for="student_id_card">Student ID card number:</label>
-                            <input name="student_id_card" id="student_id_card" v-model="student_info.student_id_card" placeholder="Insert ID card number here" required>
+                        <div class="input-container">
+                            <label for="student_id_card">Student ID card number: (*)</label>
+                            <input type="text" name="student_id_card" id="student_id_card" v-model="student_info.student_id_card" placeholder="Insert ID card number here Eg: 2564409D" required>
                         </div>
 
-                        <div>
-                            <label for="years">Student school year:</label>
+                        <div class="select-container">
+                            <label for="years">Student school year: (*)</label>
                             <select name="years" id="years" v-model="student_info.student_year" required>
                                 <option value="" selected disabled hidden>Choose:</option>
                                 <option v-for="(year, index) in this.schoolYears" :key="index">{{ year.school_year }}</option>
                             </select>
                         </div>
 
-                        <div>
+                        <div class="checkbox-container">
                             <label class="section-title">Additional requests:</label>
-                            <label for="wheelchair_user">Wheelchair user</label>
-                            <input type="checkbox" id="wheelchair_user" value="1" v-model="student_info.wheelchair_user">
-                            <label for="cannot_climb_high_steps">Cannot climb high steps</label>
-                            <input type="checkbox" id="cannot_climb_high_steps" value="1" v-model="student_info.cannot_climb_high_steps">
+                            <div class="checkbox-container-options">
+                                <div>
+                                    <label for="wheelchair_user">Wheelchair user</label>
+                                    <input type="checkbox" id="wheelchair_user" value="1" v-model="student_info.wheelchair_user">
+                                </div>
+                                <div>
+                                    <label for="cannot_climb_high_steps">Cannot climb high steps</label>
+                                    <input type="checkbox" id="cannot_climb_high_steps" value="1" v-model="student_info.cannot_climb_high_steps">
+                                </div>
+                            </div>
                         </div>
                     </fieldset>
 
-                    <fieldset v-if="currentStep == 4">
+                    <fieldset class="parentguardian-info" v-if="currentStep == 4">
                         <h3>Parent/Guardian Information</h3>
-                        <div>
-                            <label for="name_of_parentguardian">Name of parent/guardian:</label>
-                            <input name="name_of_parentguardian" id="name_of_parentguardian" v-model="parentguardian_info.name_of_parentguardian" placeholder="Insert name here" required>
+                        <div class="input-container">
+                            <label for="name_of_parentguardian">Name of parent/guardian: (*)</label>
+                            <input type="text" name="name_of_parentguardian" id="name_of_parentguardian" v-model="parentguardian_info.name_of_parentguardian" placeholder="Insert name here" required>
                         </div>
 
-                        <div>
-                            <label for="surname_of_parentguardian">Surname of parent/guardian:</label>
-                            <input name="surname_of_parentguardian" id="surname_of_parentguardian" v-model="parentguardian_info.surname_of_parentguardian" placeholder="Insert surname here" required>
+                        <div class="input-container">
+                            <label for="surname_of_parentguardian">Surname of parent/guardian: (*)</label>
+                            <input type="text" name="surname_of_parentguardian" id="surname_of_parentguardian" v-model="parentguardian_info.surname_of_parentguardian" placeholder="Insert surname here" required>
                         </div>
 
-                        <div>
-                            <label for="parentguardian_id_card">Parent/Guardian ID card number:</label>
-                            <input name="parentguardian_id_card" id="parentguardian_id_card" v-model="parentguardian_info.parentguardian_id_card" placeholder="Insert ID card number here" required>
+                        <div class="input-container">
+                            <label for="parentguardian_id_card">Parent/Guardian ID card number: (*)</label>
+                            <input type="text" name="parentguardian_id_card" id="parentguardian_id_card" v-model="parentguardian_info.parentguardian_id_card" placeholder="Insert ID card number here" required>
                         </div>
 
-                        <div>
-                            <label for="mobile_number">Parent/Guardian mobile number:</label>
-                            <input type="phone" name="mobile_number" id="mobile_number" v-model="parentguardian_info.mobile_number" placeholder="Insert phone number here" required>
+                        <div class="input-container">
+                            <label for="mobile_number">Parent/Guardian mobile number: (*)</label>
+                            <input type="phone" name="mobile_number" id="mobile_number" v-model="parentguardian_info.mobile_number" placeholder="Insert mobile number here" required>
                         </div>
 
-                        <div>
-                            <label for="secondary_mobile_number">Parent/Guardian secondary mobile number:</label>
-                            <input type="phone" name="secondary_mobile_number" id="secondary_mobile_number" v-model="parentguardian_info.secondary_mobile_number" placeholder="Insert phone number here" required>
+                        <div class="input-container">
+                            <label for="secondary_mobile_number">Parent/Guardian secondary mobile number: (*)</label>
+                            <input type="phone" name="secondary_mobile_number" id="secondary_mobile_number" v-model="parentguardian_info.secondary_mobile_number" placeholder="Insert mobile number here" required>
                         </div>
 
-                        <div>
-                            <label for="address_of_parentguardian">Parent/Guardian home address:</label>
+                        <div class="textarea-container">
+                            <label for="address_of_parentguardian">Parent/Guardian home address: (*)</label>
                             <textarea name="address_of_parentguardian" id="address_of_parentguardian" v-model="parentguardian_info.address_of_parentguardian" placeholder="Insert home address here" required></textarea>
                         </div>
                     </fieldset>
 
-                    <fieldset v-if="currentStep == 5">
+                    <fieldset class="consent-info" v-if="currentStep == 5">
                         <h3>Disclaimer and Consent Forms</h3>
-                        <div v-for="(consent, index) in this.consentForms" :key="index">
+                        <div class="consent-container" v-for="(consent, index) in this.consentForms" :key="index">
                             <h4>{{ consent.consent_form.title }}</h4>
-                            <div class="consent-form-text" v-html="consent.consent_form.content" style="height: 250px; overflow-y: scroll;"></div>
+                            <div class="consent-form-text" v-html="consent.consent_form.content"></div>
 
-                            <label for="consent_agreement">I agree to have read and understood <strong>{{ consent.consent_form.title }}</strong></label>
-                            <input type="checkbox" id="consent_agreement" required>
+                            <div class="checkbox-container">
+                                <label for="consent_agreement">I agree to have read and understood <strong>{{ consent.consent_form.title }}</strong></label>
+                                <input type="checkbox" value="1" v-model="consent_info.consent_forms_agreement[index]" required>
+                            </div>
                         </div>
 
-                        <div>
-                            <label for="consent_agreement">I agree to Friendly Cab <strong>Terms &amp; Conditions</strong></label>
-                            <input type="checkbox" id="consent_agreement" required>
+                        <div class="checkbox-container">
+                            <label for="consent_agreement">I agree to Friendly Cab <strong><router-link to="terms">Terms &amp; Conditions</router-link></strong></label>
+                            <input type="checkbox" value="1" id="tcs_agreement" v-model="consent_info.terms_agreement" required>
                         </div>
                     </fieldset>
 
-                    <fieldset v-if="currentStep == 6">
-                        <h3>Confirm and Submit</h3>
+                    <fieldset class="confirm-info" v-if="currentStep == 6">
+                        <h3>Confirm Details and Submit</h3>
                         <div class="submit-button button">
-                            <button type="submit">Submit</button>
+                            <button type="submit" class="button-blue">Submit</button>
                         </div>
                     </fieldset>
                 </form>
@@ -246,11 +254,24 @@ export default {
                 mobile_number: '',
                 secondary_mobile_number: '',
                 address_of_parentguardian: ''
+            },
+            consent_info: {
+                consent_forms_agreement: [],
+                terms_agreement: false
             }
         }
     },
     created() {
         this.fetchFormDetails()
+    },
+    watch: {
+        'pick_up_drop_off_info.same_addresses': function() {
+            if(this.pick_up_drop_off_info.same_addresses) {
+                this.pick_up_drop_off_info.drop_off_address = this.pick_up_drop_off_info.pick_up_address
+            } else {
+                this.pick_up_drop_off_info.drop_off_address = ''
+            }
+        }
     },
     methods: {
         sendApplication(e) {
@@ -301,14 +322,63 @@ export default {
             this.schoolNames = response.data[0].acf.list_of_schools
             this.schoolYears = response.data[0].acf.list_of_school_years
             this.consentForms = response.data[0].acf.agreementconsent_forms
+
+            for(var i = 0; i < this.consentForms.length; i++){
+                this.consent_info.consent_forms_agreement.push(false)
+            }
         },
         checkStepData() {
             switch (this.currentStep) {
                 case 1:
-                    if(this.transport_info.prev_year_use == '' || this.transport_info.am_pm == '' || this.transport_info.school == '' || (this.transport_info.transport_days == '' || (this.transport_info.transport_days == 'Specific days only' && this.transport_info.specify_days.length == 0))){
+                    if(this.transport_info.prev_year_use == '' 
+                        || this.transport_info.am_pm == '' 
+                        || this.transport_info.school == '' 
+                        || (this.transport_info.transport_days == '' || (this.transport_info.transport_days == 'Specific days only' && this.transport_info.specify_days.length == 0))) {
                         this.stepError = 'Please fill in all required fields before proceeding to the next step'
-                    }else{
+                    } else {
                         this.currentStep++
+                        this.stepError = ''
+                    }
+                    break;
+                case 2: 
+                    if(this.pick_up_drop_off_info.pick_up_address == '' || this.pick_up_drop_off_info.drop_off_address == '') {
+                        this.stepError = 'Please fill in all required fields before proceeding to the next step'
+                    } else {
+                        this.currentStep++
+                        this.stepError = ''
+                    }
+                    break;
+                case 3:
+                    if(this.student_info.name_of_student == ''
+                        || this.student_info.surname_of_student == ''
+                        || this.student_info.student_id_card == ''
+                        || this.student_info.student_year == '') {
+                        this.stepError = 'Please fill in all required fields before proceeding to the next step'
+                    } else {
+                        this.currentStep++
+                        this.stepError = ''
+                    }
+                    break;
+                case 4:
+                    if(this.parentguardian_info.name_of_parentguardian == ''
+                        || this.parentguardian_info.surname_of_parentguardian == ''
+                        || this.parentguardian_info.parentguardian_id_card == ''
+                        || this.parentguardian_info.mobile_number == ''
+                        || this.parentguardian_info.secondary_mobile_number == ''
+                        || this.parentguardian_info.address_of_parentguardian == '') {
+                        this.stepError = 'Please fill in all required fields before proceeding to the next step'
+                    } else {
+                        this.currentStep++
+                        this.stepError = ''
+                    }
+                    break;
+                case 5:
+                    if(this.consent_info.consent_forms_agreement.includes(false) 
+                        || !this.consent_info.terms_agreement){
+                        this.stepError = 'Agreement is required before proceeding to the next step'
+                    } else {
+                        this.currentStep++
+                        this.stepError = ''
                     }
                     break;
             }
