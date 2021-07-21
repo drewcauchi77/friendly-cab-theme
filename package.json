@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "vue": "^2.6.11",
-    "vue-meta": "^2.4.0"
+    "vue-meta": "^2.4.0",
+    "vue-slick-carousel": "^1.0.6"
   }
 }
