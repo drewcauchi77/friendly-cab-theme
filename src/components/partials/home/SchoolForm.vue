@@ -1,5 +1,5 @@
 <template>
-    <section class="school-form-section" v-if="!isHomeLoading">
+    <section class="school-form-section" v-if="!isHomeLoading" id="school-form">
         <div class="container">
             <div class="section-title lower-below-text-border" v-html="setSchoolFormSectionData.title"></div>
 
@@ -160,6 +160,11 @@
                             <input type="phone" name="secondary_mobile_number" id="secondary_mobile_number" v-model="parentguardian_info.secondary_mobile_number" placeholder="Insert mobile number here" required>
                         </div>
 
+                        <div class="input-container">
+                            <label for="email_address">Email address: (*)</label>
+                            <input type="email" name="email_address" id="email_address" v-model="parentguardian_info.email_address" placeholder="Insert email address here" required>
+                        </div>
+
                         <div class="textarea-container">
                             <label for="address_of_parentguardian">Parent/Guardian home address: (*)</label>
                             <textarea name="address_of_parentguardian" id="address_of_parentguardian" v-model="parentguardian_info.address_of_parentguardian" placeholder="Insert home address here" required></textarea>
@@ -178,7 +183,7 @@
                             </div>
                         </div>
 
-                        <div class="checkbox-container">
+                        <div class="checkbox-container fc-terms">
                             <label for="consent_agreement">I agree to Friendly Cab <strong><router-link to="terms">Terms &amp; Conditions</router-link></strong></label>
                             <input type="checkbox" value="1" id="tcs_agreement" v-model="consent_info.terms_agreement" required>
                         </div>
@@ -186,24 +191,131 @@
 
                     <fieldset class="confirm-info" v-if="currentStep == 6">
                         <h3>Confirm Details and Submit</h3>
+
+                        <table>
+                            <tr>
+                                <th>Transport Information</th>
+                            </tr>
+                            <tr>
+                                <td>Days: 
+                                    <span>{{ transport_info.transport_days }}</span>
+                                    <span v-if="transport_info.specify_days.length > 0">({{ transport_info.specify_days.join(' | ') }})</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Time (Morning/Evening): 
+                                    <span>{{ transport_info.am_pm }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>School: 
+                                    <span>{{ transport_info.school }}</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>Pick-Up &amp; Drop-Off Information</th>
+                            </tr>
+                            <tr>
+                                <td>Pick-Up Address:
+                                    <span>{{ pick_up_drop_off_info.pick_up_address }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Drop-Off Address:
+                                    <p>{{ pick_up_drop_off_info.drop_off_address }}</p>
+                                </td>
+                            </tr>
+                            <tr v-if="pick_up_drop_off_info.special_instructions">
+                                <td>Special Instructions:
+                                    <span>{{ pick_up_drop_off_info.special_instructions }}</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>Student Information</th>
+                            </tr>
+                            <tr>
+                                <td>Full Name:
+                                    <span>{{ student_info.name_of_student }} {{ student_info.surname_of_student }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ID Card No.:
+                                    <span>{{ student_info.student_id_card }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Year: 
+                                    <span>{{ student_info.student_year }}</span>
+                                </td>
+                            </tr>
+                            <tr v-if="student_info.wheelchair_user || student_info.cannot_climb_high_steps">
+                                <td>Additional requests:
+                                    <span v-if="student_info.wheelchair_user">Wheelchair user</span>
+                                    <span v-if="student_info.cannot_climb_high_steps">Cannot climb high steps</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th>Parent/Guardian Information</th>
+                            </tr>
+                            <tr>
+                                <td>Full Name:
+                                    <span>{{ parentguardian_info.name_of_parentguardian }} {{ parentguardian_info.surname_of_parentguardian }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ID Card No.:
+                                    <span>{{ parentguardian_info.parentguardian_id_card }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Mobile No.:
+                                    <span>{{ parentguardian_info.mobile_number }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Secondary Mobile No.:
+                                    <span>{{ parentguardian_info.secondary_mobile_number }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Email Address:
+                                    <span>{{ parentguardian_info.email_address }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Home Address:
+                                    <span>{{ parentguardian_info.address_of_parentguardian }}</span>
+                                </td>
+                            </tr>
+                        </table>
+
                         <div class="submit-button button">
                             <button type="submit" class="button-blue">Submit</button>
                         </div>
                     </fieldset>
                 </form>
 
-                <div class="step-navigator">
+                <div class="step-navigator" v-if="currentStep !== finalStep">
                     <div class="prev-button nav-button">
                         <span class="button-blue" v-show="currentStep !== 1" @click="currentStep--">Prev</span>
                     </div>
 
                     <div class="next-button nav-button">
-                        <span class="button-blue" v-show="currentStep !== finalStep" @click="checkStepData">Next</span>
+                        <span class="button-blue" @click="checkStepData">Next</span>
                     </div>
                 </div>
 
-                <div class="response">
-                    <span class="error-message" v-if="stepError">{{ this.stepError }}</span>
+                <div class="error-response response" v-if="stepError" @click="clearErrorMessage">
+                    <div class="close">&times;</div>
+                    <span id="error-message">{{ stepError }}</span>
+                </div>
+
+                <div class="success-response response" v-if="successMessage" @click="clearSuccessMessage">
+                    <div class="close">&times;</div>
+                    <span id="error-message" >{{ successMessage }}</span>
                 </div>
             </div>
         </div>
@@ -222,6 +334,7 @@ export default {
             currentStep: 1,
             finalStep: 6,
             stepError: '',
+            successMessage: '',
             schoolNames: [],
             schoolYears: [],
             consentForms: [],
@@ -229,7 +342,6 @@ export default {
                 prev_year_use: '',
                 transport_days: '',
                 specify_days: [],
-                specifyDaysStr: '',
                 am_pm: '',
                 school: ''
             },
@@ -252,12 +364,18 @@ export default {
                 surname_of_parentguardian: '',
                 parentguardian_id_card: '',
                 mobile_number: '',
+                email_address: '',
                 secondary_mobile_number: '',
                 address_of_parentguardian: ''
             },
             consent_info: {
                 consent_forms_agreement: [],
                 terms_agreement: false
+            },
+            error_message: {
+                next_error: 'Please fill in all required fields before proceeding to the next step',
+                agreement_error: 'Agreement is required before proceeding to the next step',
+                form_error: 'There has been an error processing your form. Please contact us or try again later.'
             }
         }
     },
@@ -303,6 +421,7 @@ export default {
                         "surname_of_parentguardian": this.parentguardian_info.surname_of_parentguardian,
                         "parentguardian_id_card": this.parentguardian_info.parentguardian_id_card,
                         "mobile_number": this.parentguardian_info.mobile_number,
+                        "email_address": this.parentguardian_info.email_address,
                         "secondary_mobile_number": this.parentguardian_info.secondary_mobile_number,
                         "address_of_parentguardian": this.parentguardian_info.address_of_parentguardian
                     }
@@ -311,10 +430,45 @@ export default {
 
             axios.post('/wp-json/wp/v2/schoolapplications', gatheredData)
                 .then(res => {
-                    console.log('DONE')
+                    this.successMessage = 'Thank you for submitting this application. We will see your request as soon as possible and get back to you via the contact details you have provided.'
+                    setTimeout(function () { 
+                        this.successMessage = ''
+                    }.bind(this), 10000)
+
+                    // Reset data() back
+                    this.currentStep = 1
+                    this.transport_info.prev_year_use = ''
+                    this.transport_info.transport_days = ''
+                    this.transport_info.specify_days = []
+                    this.transport_info.am_pm = ''
+                    this.transport_info.school = ''
+
+                    this.pick_up_drop_off_info.pick_up_address = ''
+                    this.pick_up_drop_off_info.same_addresses = false
+                    this.pick_up_drop_off_info.drop_off_address = ''
+                    this.pick_up_drop_off_info.special_instructions = ''
+
+                    this.student_info.name_of_student = ''
+                    this.student_info.surname_of_student = ''
+                    this.student_info.student_id_card = ''
+                    this.student_info.student_year = ''
+                    this.student_info.wheelchair_user = 0
+                    this.student_info.cannot_climb_high_steps = 0
+
+                    this.parentguardian_info.name_of_parentguardian = ''
+                    this.parentguardian_info.surname_of_parentguardian = ''
+                    this.parentguardian_info.parentguardian_id_card = ''
+                    this.parentguardian_info.mobile_number = ''
+                    this.parentguardian_info.email_address = ''
+                    this.parentguardian_info.secondary_mobile_number = ''
+                    this.parentguardian_info.address_of_parentguardian = ''
+
+                    this.consent_info.consent_forms_agreement= [],
+                    this.consent_info.terms_agreement = false
+                    
                 })
                 .catch(error => {
-                    console.log('ERROR')
+                    this.stepError = this.error_message.form_error
                 })
         },
         async fetchFormDetails() {
@@ -334,18 +488,16 @@ export default {
                         || this.transport_info.am_pm == '' 
                         || this.transport_info.school == '' 
                         || (this.transport_info.transport_days == '' || (this.transport_info.transport_days == 'Specific days only' && this.transport_info.specify_days.length == 0))) {
-                        this.stepError = 'Please fill in all required fields before proceeding to the next step'
+                        this.haltFromNextStep(this.error_message.next_error)
                     } else {
-                        this.currentStep++
-                        this.stepError = ''
+                        this.goToNextStep()
                     }
                     break;
                 case 2: 
                     if(this.pick_up_drop_off_info.pick_up_address == '' || this.pick_up_drop_off_info.drop_off_address == '') {
-                        this.stepError = 'Please fill in all required fields before proceeding to the next step'
+                        this.haltFromNextStep(this.error_message.next_error)
                     } else {
-                        this.currentStep++
-                        this.stepError = ''
+                        this.goToNextStep()
                     }
                     break;
                 case 3:
@@ -353,10 +505,9 @@ export default {
                         || this.student_info.surname_of_student == ''
                         || this.student_info.student_id_card == ''
                         || this.student_info.student_year == '') {
-                        this.stepError = 'Please fill in all required fields before proceeding to the next step'
+                        this.haltFromNextStep(this.error_message.next_error)
                     } else {
-                        this.currentStep++
-                        this.stepError = ''
+                        this.goToNextStep()
                     }
                     break;
                 case 4:
@@ -365,24 +516,45 @@ export default {
                         || this.parentguardian_info.parentguardian_id_card == ''
                         || this.parentguardian_info.mobile_number == ''
                         || this.parentguardian_info.secondary_mobile_number == ''
+                        || this.parentguardian_info.email_address == ''
                         || this.parentguardian_info.address_of_parentguardian == '') {
-                        this.stepError = 'Please fill in all required fields before proceeding to the next step'
+                        this.haltFromNextStep(this.error_message.next_error)
                     } else {
-                        this.currentStep++
-                        this.stepError = ''
+                        this.goToNextStep()
                     }
                     break;
                 case 5:
                     if(this.consent_info.consent_forms_agreement.includes(false) 
                         || !this.consent_info.terms_agreement){
-                        this.stepError = 'Agreement is required before proceeding to the next step'
+                        this.haltFromNextStep(this.error_message.agreement_error)
                     } else {
-                        this.currentStep++
-                        this.stepError = ''
+                        this.goToNextStep()
                     }
                     break;
             }
         },
+        goToNextStep() {
+            this.currentStep++
+            this.stepError = ''
+            this.scrollToSchoolForm()
+        },
+        haltFromNextStep(errorMsg) {
+            this.stepError = errorMsg
+            setTimeout(function () { 
+                this.stepError = ''
+            }.bind(this), 6000)
+        },
+        scrollToSchoolForm() {
+            document.getElementById('school-form').scrollIntoView({
+                behavior: 'smooth'
+            })
+        },
+        clearErrorMessage() {
+            this.stepError = ''
+        },
+        clearSuccessMessage() {
+            this.successMessage = ''
+        }
     }
 }
 </script>

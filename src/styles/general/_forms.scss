@@ -12,23 +12,30 @@ fieldset{
     }
 }
 
-select, textarea, input[type=text], input[type=phone]{
+select, textarea, input[type=text], input[type=phone], input[type=email], input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active{
     width: 100%;
-    padding: 11px 5%;
     border: 1px solid $light-grey;
     outline: none;
     font-family: 'Montserrat', sans-serif;
+    -webkit-box-shadow: 3px 3px 6px 6px $light-grey !important;
     box-shadow: 3px 3px 6px 6px $light-grey;
 }
 
-textarea, input[type=text], input[type=phone]{
+textarea, input[type=text], input[type=phone], input[type=email]{
+    padding: 10px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     border-radius: 10px;
 }
 
+input[type=checkbox]{
+    height: 15px;
+    width: 15px;
+}
+
 textarea{
+    padding: 10px;
     height: 120px;
     resize: none;
 }
@@ -37,8 +44,37 @@ select{
     height: 45px;
     border-radius: 50px;
     cursor: pointer;
+    padding: 10px 30px 10px 10px;
+    cursor: pointer;
+    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right;
+    -webkit-appearance: none;
+    background-position-x: calc(100% - 10px);
+    background-size: 10px;
     option{
         border: 1px solid $light-grey;
         border-radius: 0 10px 10px 0;
+    }
+}
+
+@media only screen and (min-width: $breakpointSmall){
+    textarea, input[type=text], input[type=phone], input[type=email]{
+        padding: 20px;
+    }
+
+    select{
+        padding: 15px 30px 15px 15px;
+        height: 55px;
+    }
+}
+
+@media only screen and (min-width: $breakpointLarge){
+    fieldset{
+        label{
+            font-size: 16px;
+            padding-bottom: 25px;
+        }
+        input, textarea, select{
+            font-size: 15px;
+        }
     }
 }
