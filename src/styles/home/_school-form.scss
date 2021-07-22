@@ -113,11 +113,12 @@
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 padding-top: 20px;
-                grid-column-gap: 25px;
+                grid-column-gap: 30px;
                 .nav-button{
                     width: fit-content;
                     .button-blue{
                         width: 100px;
+                        padding: 15px 0px;
                     }
                 }
                 .prev-button{
@@ -125,12 +126,34 @@
                 }
             }
             .response{
-                padding-top: 20px;
                 text-align: center;
-                .error-message{
-                    color: #ff0033;
-                    font-weight: 600;
+                position: fixed;
+                top: 120px;
+                left: 0;
+                right: 0;
+                margin: auto;
+                max-width: 450px;
+                z-index: 899;
+                cursor: default;
+                .close{
+                    position: absolute;
+                    right: 5px;
+                    font-size: 20px;
+                    color: $white;
                 }
+                #error-message{
+                    font-weight: 600;
+                    padding: 15px 30px;
+                    display: block;
+                    margin: 0 auto;
+                    color: $white;
+                }
+            }
+            .error-response{
+                background: #ff0033;
+            }
+            .success-response{
+                background: #4bb534
             }
         }
     }
@@ -146,6 +169,134 @@
                             .checkbox-container-options{
                                 grid-template-columns: repeat(5, 1fr);
                             }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $breakpointMedium){
+    .school-form-section{
+        .container{
+            .school-form-container{
+                form{
+                    .transport-info, .student-info, .parentguardian-info{
+                        display: grid;
+                        grid-template-columns: repeat(2, 1fr);
+                        grid-gap: 30px;
+                        padding-bottom: 30px;
+                        h3{
+                            grid-column: 1/3;
+                            padding-bottom: 0px;
+                        }
+                        .select-container, .input-container{
+                            padding-bottom: 0px;
+                            display: grid;
+                            grid-template-rows: auto auto;
+                            grid-row-gap: 10px;
+                            label{
+                                padding-bottom: 15px;
+                            }
+                            select{
+                                align-self: end;
+                            }
+                            &:nth-child(4){
+                                grid-column: 1/2;
+                            }
+                        }
+                        .checkbox-container{
+                            padding-bottom: 0px;
+                            label{
+                                padding-bottom: 15px;
+                            }
+                            .section-title{
+                                padding-bottom: 25px;
+                            }
+                            .checkbox-container-options{
+                                padding-bottom: 0px;
+                            }
+                        }
+                    }
+                    .transport-info{
+                        .checkbox-container{
+                            grid-column: 2/3;
+                        }
+                    }
+                    .pick-up-drop-off-info{
+                        >div{
+                            padding-bottom: 30px;
+                        }
+                        .checkbox-container{
+                            grid-template-columns: 450px 50px;
+                        }
+                    }
+                    .parentguardian-info{
+                        .textarea-container{
+                            grid-column: 1/3;
+                        }
+                    }
+                }
+                .response{
+                    top: 170px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $breakpointLarge){
+    .school-form-section{
+        .container{
+            .school-form-container{
+                form{
+                    .transport-info{
+                        .checkbox-container{
+                            .checkbox-container-options{
+                                grid-template-columns: repeat(5, 1fr);
+                            }
+                        }
+                    }
+                    .pick-up-drop-off-info{
+                        .checkbox-container{
+                            grid-template-columns: 550px 50px;
+                        }
+                    }
+                    .consent-info{
+                        .checkbox-container{
+                            label{
+                                font-size: 14px;
+                            }
+                        }
+                        .consent-container{
+                            .consent-form-text{
+                                height: 220px; 
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $breakpointXLarge){
+    .school-form-section{
+        .container{
+            .school-form-container{
+                width: 70%;
+                margin: 0 auto;
+                form{
+                    .transport-info, .student-info, .parentguardian-info{
+                        grid-gap: 50px;
+                    }
+                    .pick-up-drop-off-info, .consent-info{
+                        h3{
+                            padding-bottom: 50px;
+                        }
+                        >div{
+                            padding-bottom: 50px;
                         }
                     }
                 }
