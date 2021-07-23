@@ -78,11 +78,11 @@
                         </div>
 
                         <div class="checkbox-container">
-                            <label for="same_addresses">Same address for drop-off address as pick-up address?</label>
+                            <label for="same_addresses">Same address for drop-off as pick-up address?</label>
                             <input type="checkbox" name="same_addresses" id="same_addresses" value="1" v-model="pick_up_drop_off_info.same_addresses">
                         </div>
 
-                        <div class="textarea-container">
+                        <div class="textarea-container" v-if="!pick_up_drop_off_info.same_addresses">
                             <label for="drop_off_address">Please provide your preferred drop-off address: (*)</label>
                             <textarea name="drop_off_address" id="drop_off_address" v-model="pick_up_drop_off_info.drop_off_address" placeholder="Insert drop-off address here" required></textarea>
                         </div>
@@ -192,14 +192,16 @@
                     <fieldset class="confirm-info" v-if="currentStep == 6">
                         <h3>Confirm Details and Submit</h3>
 
+                        <p>Please make sure to check and confirm below details before submitting</p>
+
                         <table>
                             <tr>
                                 <th>Transport Information</th>
                             </tr>
                             <tr>
                                 <td>Days: 
-                                    <span>{{ transport_info.transport_days }}</span>
-                                    <span v-if="transport_info.specify_days.length > 0">({{ transport_info.specify_days.join(' | ') }})</span>
+                                    <span v-if="transport_info.transport_days == 'Monday to Friday'">{{ transport_info.transport_days }}</span>
+                                    <span v-if="transport_info.specify_days.length > 0">{{ transport_info.specify_days.join(' | ') }}</span>
                                 </td>
                             </tr>
                             <tr>
@@ -212,6 +214,9 @@
                                     <span>{{ transport_info.school }}</span>
                                 </td>
                             </tr>
+                            <tr>
+                                <td class="edit-button"><span class="blue-text" @click="goToStep(1)">Edit</span></td>
+                            </tr>
 
                             <tr>
                                 <th>Pick-Up &amp; Drop-Off Information</th>
@@ -223,13 +228,16 @@
                             </tr>
                             <tr>
                                 <td>Drop-Off Address:
-                                    <p>{{ pick_up_drop_off_info.drop_off_address }}</p>
+                                    <span>{{ pick_up_drop_off_info.drop_off_address }}</span>
                                 </td>
                             </tr>
                             <tr v-if="pick_up_drop_off_info.special_instructions">
                                 <td>Special Instructions:
                                     <span>{{ pick_up_drop_off_info.special_instructions }}</span>
                                 </td>
+                            </tr>
+                            <tr>
+                                <td class="edit-button"><span class="blue-text" @click="goToStep(2)">Edit</span></td>
                             </tr>
 
                             <tr>
@@ -253,8 +261,12 @@
                             <tr v-if="student_info.wheelchair_user || student_info.cannot_climb_high_steps">
                                 <td>Additional requests:
                                     <span v-if="student_info.wheelchair_user">Wheelchair user</span>
+                                    <span v-if="student_info.wheelchair_user && student_info.cannot_climb_high_steps"> | </span>
                                     <span v-if="student_info.cannot_climb_high_steps">Cannot climb high steps</span>
                                 </td>
+                            </tr>
+                            <tr>
+                                <td class="edit-button"><span class="blue-text" @click="goToStep(3)">Edit</span></td>
                             </tr>
 
                             <tr>
@@ -290,10 +302,13 @@
                                     <span>{{ parentguardian_info.address_of_parentguardian }}</span>
                                 </td>
                             </tr>
+                            <tr>
+                                <td class="edit-button"><span class="blue-text" @click="goToStep(4)">Edit</span></td>
+                            </tr>
                         </table>
 
                         <div class="submit-button button">
-                            <button type="submit" class="button-blue">Submit</button>
+                            <button type="submit" class="button-blue" :disabled="loading">Submit</button>
                         </div>
                     </fieldset>
                 </form>
@@ -335,6 +350,7 @@ export default {
             finalStep: 6,
             stepError: '',
             successMessage: '',
+            loading: false,
             schoolNames: [],
             schoolYears: [],
             consentForms: [],
@@ -393,6 +409,8 @@ export default {
     },
     methods: {
         sendApplication(e) {
+            this.loading = true
+
             const gatheredData = {
                 "title": this.student_info.name_of_student + ' ' + this.student_info.surname_of_student + ' (' + this.student_info.student_id_card + ')',
                 "fields": {
@@ -465,10 +483,16 @@ export default {
 
                     this.consent_info.consent_forms_agreement= [],
                     this.consent_info.terms_agreement = false
-                    
+
+                    // EMAILJS HERE
+
+                    this.scrollToSchoolForm()
                 })
                 .catch(error => {
                     this.stepError = this.error_message.form_error
+                })
+                .finally(() => {
+                    this.loading = false
                 })
         },
         async fetchFormDetails() {
@@ -494,9 +518,13 @@ export default {
                     }
                     break;
                 case 2: 
-                    if(this.pick_up_drop_off_info.pick_up_address == '' || this.pick_up_drop_off_info.drop_off_address == '') {
+                    if(this.pick_up_drop_off_info.pick_up_address == '' 
+                        || (!this.pick_up_drop_off_info.same_addresses && this.pick_up_drop_off_info.drop_off_address == '')) {
                         this.haltFromNextStep(this.error_message.next_error)
                     } else {
+                        if(this.pick_up_drop_off_info.same_addresses){
+                            this.pick_up_drop_off_info.drop_off_address = this.pick_up_drop_off_info.pick_up_address
+                        }
                         this.goToNextStep()
                     }
                     break;
@@ -536,6 +564,10 @@ export default {
         goToNextStep() {
             this.currentStep++
             this.stepError = ''
+            this.scrollToSchoolForm()
+        },
+        goToStep(step) {
+            this.currentStep = step
             this.scrollToSchoolForm()
         },
         haltFromNextStep(errorMsg) {
