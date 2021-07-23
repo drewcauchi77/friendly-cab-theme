@@ -101,6 +101,18 @@
                     }
                 }
                 .confirm-info{
+                    .edit-button{
+                        text-align: center;
+                        .blue-text{
+                            color: $blue;
+                            text-decoration: underline;
+                            opacity: 0.9;
+                            cursor: pointer;
+                            &:hover{
+                                opacity: 1;
+                            }
+                        }
+                    }
                     .submit-button{
                         button{
                             width: 200px;
@@ -275,6 +287,10 @@
                             }
                         }
                     }
+                    .confirm-info{
+                        width: 70%;
+                        margin: 0 auto;
+                    }
                 }
             }
         }
@@ -291,8 +307,8 @@
                     .transport-info, .student-info, .parentguardian-info{
                         grid-gap: 50px;
                     }
-                    .pick-up-drop-off-info, .consent-info{
-                        h3{
+                    .pick-up-drop-off-info, .consent-info, .confirm-info{
+                        h3, p{
                             padding-bottom: 50px;
                         }
                         >div{
