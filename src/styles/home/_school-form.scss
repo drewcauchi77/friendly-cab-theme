@@ -301,7 +301,7 @@
     .school-form-section{
         .container{
             .school-form-container{
-                width: 70%;
+                width: 80%;
                 margin: 0 auto;
                 form{
                     .transport-info, .student-info, .parentguardian-info{
@@ -316,6 +316,16 @@
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $breakpointXXLarge){
+    .school-form-section{
+        .container{
+            .school-form-container{
+                width: 70%;
             }
         }
     }

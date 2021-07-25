@@ -18,13 +18,7 @@ h2{
 h3{
     font-size: 18px ;
     color: $black;
-    font-weight: 700;
-
-    @media only screen and (min-width: $breakpointLarge){
-        font-size: 27px;
-        font-weight: bold;
-    }
-    
+    font-weight: 700;  
 }
 
 a{
@@ -78,6 +72,11 @@ a{
 @media only screen and (min-width: $breakpointLarge){
     h2{
         font-size: 50px !important;
+    }
+
+    h3{
+        font-size: 27px;
+        font-weight: bold;
     }
 
     .section-title.lower-below-text-border, .section-title h2{
