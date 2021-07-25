@@ -1,5 +1,5 @@
 <template>
-    <section class="home-banner-section" v-if="!isHomeLoading" v-bind:style="{ backgroundImage: 'url(' + setIntroductionSectionData.background.url + ')' }">
+    <section class="home-banner-section" v-if="!isHomeLoading" :style="{ backgroundImage: 'url(' + setIntroductionSectionData.background.url + ')' }">
         <div class="container">
             <div class="left-section">
                 <div class="inner-sec">

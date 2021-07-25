@@ -1,13 +1,13 @@
 <template>
-    <div class="container">
-        <div class="page-content" v-if="!loading">
+    <div class="contact-content" v-if="!isContactLoading">
+        <div class="page-content">
             <BannerSection v-bind:slug="'contact'" />
             <Details />
             <Form />
         </div>
-
-        <Loading v-else />
     </div>
+
+    <Loading v-else />
 </template>
 
 <script>
@@ -17,18 +17,17 @@ import Form from '../partials/contact/Form'
 
 import Loading from '../partials/global/Loading'
 
+import { setContactContentMixin } from '../../mixins'
+
 export default {
     name: 'Contact',
     components: {
         BannerSection,
         Details,
-        Form
+        Form,
+        Loading
     },
-    data() {
-        return {
-            loading: false
-        }
-    },
+    mixins: [setContactContentMixin],
     metaInfo() {
         return {
             title: 'Friendly Cab - Contact',

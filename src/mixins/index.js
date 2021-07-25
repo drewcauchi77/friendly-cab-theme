@@ -57,3 +57,49 @@ export const setAboutContentMixin = {
         }
     }
 }
+
+export const setServicesContentMixin = {
+    data() {
+        return {
+            setCarsSectionData: [],
+            setServicesSectionData: [],
+            isServicesLoading: true
+        }
+    },
+    created() {
+        this.fetchServicesContent()
+    },
+    methods: {
+        async fetchServicesContent() {
+            const response = await axios.get('/wp-json/wp/v2/pages?slug=services')
+
+            this.setCarsSectionData = response.data[0].acf.cars_section
+            this.setServicesSectionData = response.data[0].acf.services_section
+
+            this.isServicesLoading = false
+        }
+    }
+}
+
+export const setContactContentMixin = {
+    data() {
+        return {
+            setContactSectionData: [],
+            setFormSectionData: [],
+            isContactLoading: true
+        }
+    },
+    created() {
+        this.fetchContactContent()
+    },
+    methods: {
+        async fetchContactContent() {
+            const response = await axios.get('/wp-json/wp/v2/pages?slug=contact')
+
+            this.setContactSectionData = response.data[0].acf.contact_section
+            this.setFormSectionData = response.data[0].acf.form_section
+
+            this.isContactLoading = false
+        }
+    }
+}
