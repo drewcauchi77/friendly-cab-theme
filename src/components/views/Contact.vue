@@ -2,7 +2,7 @@
     <div class="contact-content" v-if="!isContactLoading">
         <div class="page-content">
             <BannerSection v-bind:slug="'contact'" />
-            <Details />
+            <Details v-if="setContactSectionData.enable_section" />
             <Form />
         </div>
     </div>
