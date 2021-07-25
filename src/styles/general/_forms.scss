@@ -45,10 +45,9 @@ select{
     border-radius: 50px;
     cursor: pointer;
     padding: 10px 30px 10px 10px;
-    cursor: pointer;
-    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right;
+    background: url('/wp-content/themes/zuus-vuejs-wp-theme-boilerplate/dist/assets/chevron.png') no-repeat right;
     -webkit-appearance: none;
-    background-position-x: calc(100% - 10px);
+    background-position-x: calc(100% - 20px);
     background-size: 10px;
     option{
         border: 1px solid $light-grey;

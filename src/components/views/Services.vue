@@ -1,13 +1,13 @@
 <template>
-    <div class="container">
-        <div class="page-content" v-if="!loading">
+    <div class="services-content" v-if="!isServicesLoading">
+        <div class="page-content">
             <BannerSection v-bind:slug="'services'" />
             <Cars />
             <ServicesSection />
         </div>
-
-        <Loading v-else />
     </div>
+
+    <Loading v-else />
 </template>
 
 <script>
@@ -17,6 +17,8 @@ import ServicesSection from '../partials/global/ServicesSection'
 
 import Loading from '../partials/global/Loading'
 
+import { setServicesContentMixin } from '../../mixins'
+
 export default {
     name: 'Services',
     components: {
@@ -25,11 +27,7 @@ export default {
         ServicesSection,
         Loading
     },
-    data() {
-        return {
-            loading: false
-        }
-    },
+    mixins: [setServicesContentMixin],
     metaInfo() {
         return {
             title: 'Friendly Cab - Services',

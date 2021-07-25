@@ -1,8 +1,10 @@
 <template>
-    <div class="container">
-        <h2>{{ allBannerContent.tagline }}</h2>
-        <h1>{{ allBannerContent.title }}</h1>
-    </div>
+    <section class="banner-section" v-if="!loading" :style="{ backgroundImage: 'url(' + allBannerContent.background.url + ')' }">
+        <div class="banner-container container">
+            <h2>{{ allBannerContent.tagline }}</h2>
+            <h1>{{ allBannerContent.title }}</h1>
+        </div>
+    </section>
 </template>
 
 <script>
