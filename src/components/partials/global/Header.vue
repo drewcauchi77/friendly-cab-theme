@@ -18,7 +18,7 @@
                     </div>
 
                     <div class="navigation-container" :class="{ open: navMenuOpen }">
-                        <Menu />
+                        <Menu v-bind:slug="'header'"/>
                         <div class="phone-details">
                             <a :href="this.phoneNumber">
                                 <div class="phone-icon">
@@ -45,7 +45,7 @@ export default {
         Menu,
         PhoneIcon
     },
-     data() {
+    data() {
         return {
             loading: true,
             headerSiteLogo: [],
