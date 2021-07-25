@@ -1,0 +1,62 @@
+.details-section{
+    .container{
+        .contact-details{
+            .single-contact{
+                text-align: center;
+                padding-bottom: 30px;
+                .icon{
+                    padding-bottom: 20px;
+                    img{
+                        height: 60px;
+                    }
+                }
+                .title{
+                    padding-bottom: 20px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $breakpointSmall){
+    .details-section{
+        .container{
+            .contact-details{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                .single-contact{
+                    width: 50%;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $breakpointMedium){
+    .details-section{
+        .container{
+            .contact-details{
+                .single-contact{
+                    width: 33%;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $breakpointLarge){
+    .details-section{
+        .container{
+            .contact-details{
+                .single-contact{
+                    .icon{
+                        img{
+                            height: 100px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

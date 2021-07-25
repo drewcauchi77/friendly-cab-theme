@@ -25,7 +25,7 @@ export const setHomeContentMixin = {
             this.setIntroductionSectionData = response.data[0].acf.introduction_section
             this.setSchoolFormSectionData = response.data[0].acf.school_form_section
             this.setTestimonialsSectionData = response.data[0].acf.testimonials_section
-            console.log(this.setTestimonialsSectionData);
+
             this.isHomeLoading = false
         }
     },
