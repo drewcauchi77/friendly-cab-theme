@@ -172,7 +172,7 @@ function fc_menus() {
 
 add_action('init', 'fc_menus');
 
-// Friendly Cab Contact Forms
+// Friendly Cab Forms
 function fc_forms() {
 	$labels = array(
 		'name' 					=> _x('Forms', 'post type general name'),
@@ -270,19 +270,6 @@ function fc_school_applications() {
 
 add_action('init', 'fc_school_applications');
 
-// If CPT name is School Applications, remove the ability to publish posts
-// This is done to not expose the School Applications in the REST API through the link
-// The publish button now will have only a 'Save' feature and will operate as 'Save as Draft' button
-// Deleting School Applications will work normally
-function fc_dont_publish($data , $postarr) {  
-	if($data['post_type'] == 'schoolapplications' && $data['post_status'] !== 'trash'){
-		$data['post_status'] = 'draft';
-	}
-	return $data;   
-}  
-  
-add_filter('wp_insert_post_data' , 'fc_dont_publish' , '99', 2); 
-
 // For School Applications add the column Processed to show in the School Applications columns list
 // whether the application has been processed or not. 
 function fc_schoolapplications_columns($columns) {
@@ -313,3 +300,88 @@ function fc_schoolapplications_column($column, $post_id) {
 }
 
 add_action('manage_schoolapplications_posts_custom_column', 'fc_schoolapplications_column', 10, 2);
+
+// Friendly Cab Contact Forms
+function fc_contact_forms() {
+	$labels = array(
+		'name' 					=> _x('Contact Forms', 'post type general name'),
+		'singular_name' 		=> _x('Contact Forms', 'post type singular name'),
+		'add_new' 				=> _x('Add New', 'Contact Forms'),
+		'add_new_item' 			=> __('Add New Contact Form'),
+		'edit_item' 			=> __('Edit Contact Form'),
+		'new_item' 				=> __('New Contact Form'),
+		'all_items' 			=> __('All Contact Forms'),
+		'view_item' 			=> __('View Contact Form'),
+		'search_items' 			=> __('Search Contact Forms'),
+		'not_found' 			=> __('No Contact Forms found'),
+		'not_found_in_trash' 	=> __('No Contact Forms found in Trash'),
+		'parent_item_colon' 	=> '',
+		'menu_name' 			=> 'Contact DB',
+	);
+
+	$args = array(
+		'labels' 				=> $labels,
+		'description' 			=> 'Holds Friendly Cab\'s contact forms.',
+		'menu_icon' 			=> 'dashicons-email-alt',
+		'public' 				=> true,
+        'show_in_rest'          => true,
+		'rest_controller_class' => 'FC_WP_REST_Controller',
+		'publicly_queryable' 	=> true,
+		'show_ui' 				=> true,
+		'exclude_from_search' 	=> true,
+		'show_in_nav_menus' 	=> false,
+		'has_archive' 			=> false,
+		'rewrite' 				=> false,
+		'menu_position' 		=> 14,
+		'supports' 				=> array('title', 'page_attributes'),
+		'has_archive' 			=> false, 
+	);
+	
+	register_post_type('contactforms', $args);
+}
+
+add_action('init', 'fc_contact_forms');
+
+// For Contact Forms add the column Acknowledged to show in the School Applications columns list
+// whether the application has been acknowledged or not. 
+function fc_contactforms_columns($columns) {
+  
+    $columns = array(
+		'cb' 			=> $columns['cb'],
+		'title' 		=> __('Title'),
+		'acknowledged' 	=> __('Acknowledged'),
+		'date' 			=> __('Date'),
+    );
+  
+  	return $columns;
+}
+
+add_filter('manage_contactforms_posts_columns', 'fc_contactforms_columns');
+
+// If the column read is the Acknowledged column created above, read from the custom field set and show it 
+// under the column name list
+function fc_contactforms_column($column, $post_id) {
+	// Acknowledged column
+	if ('acknowledged' === $column) {
+		if(get_field('acknowledged', $post_id) == 1) {
+			echo '<span style="color:green;"><strong>YES</strong></span>';
+		}else{
+			echo '<span style="color:red;"><strong>NO</strong></span>';
+		}
+	}
+}
+
+add_action('manage_contactforms_posts_custom_column', 'fc_contactforms_column', 10, 2);
+
+// If CPT name is School Applications or Contact Forms, remove the ability to publish posts
+// This is done to not expose the School Applications and Contact Forms in the REST API through the link
+// The publish button now will have only a 'Save' feature and will operate as 'Save as Draft' button
+// Deleting School Applications and Contact Forms will work normally
+function fc_dont_publish($data , $postarr) {  
+	if(($data['post_type'] == 'schoolapplications' || $data['post_type'] == 'contactforms') && $data['post_status'] !== 'trash'){
+		$data['post_status'] = 'draft';
+	}
+	return $data;   
+}  
+  
+add_filter('wp_insert_post_data' , 'fc_dont_publish' , '99', 2); 
