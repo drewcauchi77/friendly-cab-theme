@@ -1,0 +1,38 @@
+.response{
+    text-align: center;
+    position: fixed;
+    top: 120px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-width: 450px;
+    z-index: 899;
+    cursor: default;
+    .close{
+        position: absolute;
+        right: 5px;
+        font-size: 20px;
+        color: $white;
+    }
+    #error-message{
+        font-weight: 600;
+        padding: 15px 30px;
+        display: block;
+        margin: 0 auto;
+        color: $white;
+    }
+}
+
+.error-response{
+    background: #ff0033;
+}
+
+.success-response{
+    background: #4bb534
+}
+
+@media only screen and (min-width: $breakpointMedium){
+    .response{
+        top: 170px;
+    }
+}
