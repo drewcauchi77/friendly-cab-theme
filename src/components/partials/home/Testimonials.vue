@@ -13,6 +13,15 @@
                         </div>
                     </div>
                </div>
+                <template #prevArrow>
+                    <div class="prevArrow">                        
+                    </div>
+                </template>
+                
+                <template #nextArrow>
+                    <div class="nextArrow">                        
+                    </div>
+                </template>
             </VueSlickCarousel>
         </div>
     </div>
@@ -37,27 +46,21 @@ export default {
                 slidesToScroll: 1,
                 responsive: [
                     {
-                    breakpoint: 1600,
+                    breakpoint: 1400,
                         settings: {
                             slidesToShow: 3
                         }
                     },
                     {
-                    breakpoint: 1200,
+                    breakpoint: 1399,
                         settings: {
                             slidesToShow: 2
                         }
                     },
                     {
-                    breakpoint: 993,
+                    breakpoint: 767,
                         settings: {
-                            slidesToShow: 2
-                        }
-                    },
-                    {
-                    breakpoint: 650,
-                        settings: {
-                            slidesToShow: 1,
+                            slidesToShow: 1
                         }
                     }
                 ]

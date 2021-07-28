@@ -1,4 +1,8 @@
 .testimonials-section{
+    padding-bottom: 120px;
+    .section-title{
+        padding-top: 40px;
+    }
     .card{
         .inner-card{
             max-width: 78%;
@@ -9,11 +13,12 @@
             -moz-box-shadow: 0px 8px 15px -12px rgba(143,139,139,1);
             padding: 50px;
             background: $white;
-            margin: 20px 70px 20px 3px;
+            margin: 20px 35px;
+            
 
             .feedback{
                 display: grid;
-                grid-template-rows: minmax(200px, 300px);
+                grid-template-rows: auto;
             }
 
             .user-section{
@@ -47,16 +52,52 @@
            
         }
     }
-}
 
-@media only screen and (min-width: $breakpointMedium){
-    .testimonials-section{
+    .prevArrow, .nextArrow{
+        background: $blue;
+        border: 2px solid $blue;
+        border-radius: 25px;
+        position: absolute;
+        top: auto;
+        margin: auto;
+        height: 50px;
+        bottom: -60px;
+        width: 50px;
+    }
 
-    }   
+    .prevArrow{
+        right: 75px;
+        left: 0;
+    }
+
+    .nextArrow{
+        left: 75px;
+        right: 0;
+    }
 }
 
 @media only screen and (min-width: $breakpointLarge){
     .testimonials-section{
+        .section-title{
+            padding-top: 50px;
+        }
+        
+        padding-bottom: 120px;
+        .card{
+            .inner-card{
+                margin: 20px 70px 20px 3px;
+            }
+        }
+
+        .prevArrow{
+            left: auto;
+            right: 140px;
+        }
+    
+        .nextArrow{
+            left: auto;
+            right: 70px;
+        }
 
     }
 }
