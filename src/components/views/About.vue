@@ -4,7 +4,7 @@
             <BannerSection v-bind:slug="'about'" />
             <AboutUs />
             <Benefits />
-            <ServicesSection />
+            <ServicesSection v-bind:slug="'about'" />
             <Additional />
         </div>
     </div>
