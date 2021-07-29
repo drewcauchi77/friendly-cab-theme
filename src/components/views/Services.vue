@@ -3,7 +3,7 @@
         <div class="page-content">
             <BannerSection v-bind:slug="'services'" />
             <Cars />
-            <ServicesSection />
+            <ServicesSection v-bind:slug="'services'" />
         </div>
     </div>
 

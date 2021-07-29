@@ -1,0 +1,89 @@
+.services-section{
+    .services-container{
+        .services-list{
+            display: grid;
+            grid-row-gap: 30px;
+            .single-service{
+                border-radius: 10px;
+                display: grid;
+                grid-template-rows: 200px auto;
+                box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.5);
+                -webkit-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.5);
+                -moz-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.5);
+                a{
+                    img{
+                        width: 100%;
+                        max-height: 200px;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 10px 10px 0 0;
+                    }
+                }
+                .service-details{
+                    padding: 20px 15px;
+                    display: grid;
+                    grid-row-gap: 15px;
+                    text-align: center;
+                    h3, .service-summary, .button-blue{
+                        align-self: center;
+                    }
+                    .service-summary{
+                        color: $grey;
+                    }
+                    .button-blue{
+                        margin: 0 auto;
+                        height: fit-content
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $breakpointSmall){
+    .services-section{
+        .services-container{
+            .services-list{
+                grid-template-columns: repeat(2, 1fr);
+                grid-column-gap: 30px;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $breakpointLarge){
+    .services-section{
+        .services-container{
+            .services-list{
+                grid-template-columns: repeat(3, 1fr);
+                grid-gap: 50px;
+                .single-service{
+                    grid-template-rows: 230px auto;
+                    a{
+                        img{
+                            max-height: 230px;
+                        }
+                    }
+                    .service-details{
+                        padding: 30px 25px;
+                        grid-row-gap: 20px;
+                        h3{
+                            font-size: 22px;
+                        }
+                        .button-blue{
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $breakpointXLarge){
+    .services-section{
+        .services-container{
+            width: 80%;
+        }
+    }
+}
