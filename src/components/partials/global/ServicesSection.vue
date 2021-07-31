@@ -5,17 +5,31 @@
 
             <div class="services-list">
                 <div class="single-service" v-for="(service, index) in allServicesContent.services" :key="index">
-                    <router-link :to="'/services/' + service.service.post_name">
-                        <img :src="service.service.acf.image.url" :alt="service.service.acf.image.alt">
-                    </router-link>
+                    <div class="image-link" @click="openModal(index)" :style="{ backgroundImage: 'url(' + service.service.acf.image.url + ')' }">  </div>
 
                     <div class="service-details">
                         <h3>{{ service.service.post_title }}</h3>
                         <div class="service-summary" v-html="service.service.acf.summary"></div>
-                        <router-link class="button-blue" :to="'/services/' + service.service.post_name">Read more</router-link>
+                        <span class="button-blue" @click="openModal(index)">Read more</span>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="modals">
+            <transition name="fade" v-for="(service, index) in allServicesContent.services" :key="index">
+                <div class="modal" v-if="showModal == index">
+                    <div class="underlay" @click="closeModal"></div>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>{{ service.service.post_title }}</h3>
+                            <span class="close" @click="closeModal">&#10005;</span>
+                        </div>
+                        <div class="modal-details" v-html="service.service.acf.content"></div>
+                        <router-link :to="service.service.acf.button.link" @click="closeModal" class="button-blue">{{ service.service.acf.button.text }}</router-link>
+                    </div>
+                </div>
+            </transition>
         </div>
     </section>
 </template>
@@ -28,7 +42,8 @@ export default {
     data() {
         return {
             loading: true,
-            allServicesContent: []
+            allServicesContent: [],
+            showModal: null,
         }
     },
     props: {
@@ -42,6 +57,12 @@ export default {
             const response = await axios.get('/wp-json/wp/v2/pages?slug='+this.slug)
             this.allServicesContent = response.data[0].acf.services_section
             this.loading = false
+        },
+        openModal(index) {
+            this.showModal = index
+        },
+        closeModal() {
+            this.showModal = null
         }
     }
 }
