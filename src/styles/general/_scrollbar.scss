@@ -1,12 +1,12 @@
-.consent-form-text::-webkit-scrollbar, body::-webkit-scrollbar {
+.consent-form-text::-webkit-scrollbar, body::-webkit-scrollbar, .modal-details::-webkit-scrollbar {
     width: 5px;
 }
 
-.consent-form-text::-webkit-scrollbar-track, body::-webkit-scrollbar-track {
+.consent-form-text::-webkit-scrollbar-track, body::-webkit-scrollbar-track, .modal-details::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px $light-grey;
 }
 
-.consent-form-text::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+.consent-form-text::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb, .modal-details::-webkit-scrollbar-thumb {
     background-color: $blue;
     outline: none;
     border-radius: 5px;

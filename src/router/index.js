@@ -4,7 +4,6 @@ import VueRouter from 'vue-router'
 import Home from '../components/views/Home'
 import About from '../components/views/About'
 import Services from '../components/views/Services'
-import Service from '../components/views/Service'
 import Contact from '../components/views/Contact'
 import NotFound from '../components/views/NotFound'
 
@@ -25,11 +24,6 @@ const routes = [
     path: '/services',
     name: 'Services',
     component: Services
-  },
-  {
-    path: '/services/:slug',
-    name: 'Service',
-    component: Service
   },
   {
     path: '/contact',
