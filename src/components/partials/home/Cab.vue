@@ -1,5 +1,5 @@
 <template>
-    <section class="home-cab-section" v-if="!isHomeLoading"v-bind:style="{ backgroundImage: 'url(' + setCabSectionData.background.url + ')' }">
+    <section class="home-cab-section" v-if="!isHomeLoading" v-bind:style="{ backgroundImage: 'url(' + setCabSectionData.background.url + ')' }">
         <div class="container">
             <div class="lect-sec">
                 <div v-html="setCabSectionData.title"></div>

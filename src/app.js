@@ -3,7 +3,7 @@ import VueMeta from 'vue-meta'
 import VueSlickCarousel from 'vue-slick-carousel'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faMapMarkerAlt, faEnvelope, faPhoneAlt } from '@fortawesome/free-solid-svg-icons'
+import { faMapMarkerAlt, faEnvelope, faPhoneAlt, faSuitcase, faUser, faFan } from '@fortawesome/free-solid-svg-icons'
 import { faFacebook, faTwitter, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -19,6 +19,9 @@ Vue.use(VueMeta)
 library.add(faMapMarkerAlt)
 library.add(faEnvelope)
 library.add(faPhoneAlt)
+library.add(faSuitcase)
+library.add(faUser)
+library.add(faFan)
 library.add(faFacebook)
 library.add(faTwitter)
 library.add(faInstagram)
