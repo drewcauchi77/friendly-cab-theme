@@ -1,0 +1,208 @@
+.cars-section{
+    .cars-content{
+        box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.5);
+        -webkit-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.5);
+        -moz-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.5);
+        .cars-header{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            .car-selector{
+                height: 55px;
+                background-color: $blue;
+                color: $white;
+                border: .5px solid $white;
+                transition: 0.5s all;
+                cursor: pointer;
+                span{
+                    text-align: center;
+                    display: block;
+                    line-height: 55px;
+                }
+                &.active, &:hover{
+                    background-color: $white;
+                    color: $black;
+                }
+            }
+        }
+        .cars-main{
+            position: relative;
+            height: 575px;
+            .single-car{
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 20px;
+                right: 20px;
+                margin: auto;
+                height: fit-content;
+                h3{
+                    padding-bottom: 20px;
+                }
+                .car-details{
+                    color: $grey;
+                    padding-bottom: 20px;
+                    font-size: 14px;
+                    p{
+                        padding-bottom: 10px;
+                    }
+                    ul{
+                        list-style: inside;
+                    }
+                }
+                .car-benefits{
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-gap: 10px;
+                    padding-bottom: 20px;
+                    max-width: 450px;
+                    .single-benefit{
+                        svg{
+                            path{
+                                fill: $blue;
+                            }
+                        }
+                        span{
+                            color: $grey;
+                            margin-left: 5px;
+                        }
+                    }
+                }
+                .car-image{
+                    position: relative;
+                    padding-top: 20px;
+                    max-width: 450px;
+                    margin: 0 auto;
+                    img{
+                        width: 100%;
+                        height: auto;
+                    }
+                    .price{
+                        height: 70px;
+                        width: 70px;
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        margin: auto;
+                        border-radius: 50%;
+                        border: 2px solid $blue;
+                        .inner-price-text{
+                            width: fit-content;
+                            position: absolute;
+                            top: 0;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            margin: auto;
+                            height: fit-content;
+                            text-align: center;
+                            .per-km{
+                                font-size: 12px;
+                            }
+                            .car-price{
+                                font-size: 16px;
+                                font-weight: 700;
+                                strong{
+                                    font-size: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $breakpointSmall){
+    .cars-section{
+        .cars-content{
+            .cars-main{
+                height: 500px;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $breakpointMedium){
+    .cars-section{
+        .cars-content{
+            .cars-header{
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $breakpointLarge){
+    .cars-section{
+        .cars-content{
+            .cars-main{
+                height: 400px;
+                width: 90%;
+                margin: 0 auto;
+                .single-car{
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-template-rows: 30px 170px 30px;
+                    grid-gap: 30px;
+                    grid-template-areas: 'title carimage'
+                        'details carimage'
+                        'benefits carimage';
+                    h3{
+                        grid-area: title;
+                        padding: 0px;
+                        align-self: end;
+                    }
+                    .car-details{
+                        grid-area: details;
+                        padding: 0px;
+                        align-self: center;
+                    }
+                    .car-benefits{
+                        grid-area: benefits;
+                        padding: 0px;
+                        align-self: start;
+                    }
+                    .car-image{
+                        grid-area: carimage;
+                        padding: 0px;
+                        align-self: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $breakpointXLarge){
+    .cars-section{
+        .cars-content{
+            .cars-header{
+                grid-template-columns: repeat(6, 1fr);
+            }
+            .cars-main{
+                width: 90%;
+                .single-car{
+                    .car-image{
+                        max-width: 650px;
+                        .price{
+                            height: 80px;
+                            width: 80px;
+                            .inner-price-text{
+                                .per-km{
+                                    font-size: 14px;
+                                }
+                                .car-price{
+                                    font-size: 22px;
+                                    strong{
+                                        font-size: 14px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
