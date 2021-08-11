@@ -1,0 +1,109 @@
+.why-choose-us-section{
+    position: relative;
+    padding: 70px 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    &::before{
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        background: $black;
+        opacity: 0.7;
+    }
+
+    .container{
+        position: relative;
+        h3{
+            color: $dark-grey;
+            margin: 0 auto;
+            font-weight: 700;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        h2{
+            text-align: center;
+            color: $white;
+            font-size: 35px;
+            
+        }
+
+        .three-col-section{
+            display: grid;
+    
+            .column{
+                text-align: center;
+                max-width: 300px;
+                margin: 0 auto;
+                margin-top: 75px;
+    
+                img{
+                    padding-bottom: 16px;
+                    min-height: 90px;
+                }
+    
+                .white-title{
+                    padding-bottom: 20px;
+                    color: $white;
+                    font-size: 18px;
+                }
+            }
+    
+        }
+    }
+}
+
+@media only screen and (min-width: $breakpointMedium){
+    .why-choose-us-section{
+        .container{
+            .three-col-section{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+
+            }
+        }
+    }  
+}
+
+@media only screen and (min-width: $breakpointLarge){
+    .why-choose-us-section{
+        padding: 100px 0;
+        .container{
+            h3{
+               font-size: 20px;
+            }
+    
+            h2{
+               font-size: 80px;
+            }
+
+            .three-col-section{
+                grid-template-columns: 1fr 1fr 1fr;
+    
+                .column{
+                    margin-top: 100px;
+                    max-width: 400px;
+
+                    img{
+                        padding-bottom: 30px;
+                    }
+        
+                    .white-title{
+                        font-size: 28px;
+                    }
+
+
+                }
+            }
+        }
+    }
+}

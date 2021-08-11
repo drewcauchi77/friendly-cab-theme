@@ -46,7 +46,7 @@
             }
 
             p{
-                color: #707070;
+                color: $dark-grey;
                 max-width: 280px;
                 margin: 0 auto;
                 font-weight: 700;
@@ -71,13 +71,6 @@
                 
                 h4{
                     font-size: 28px;
-                }
-    
-                p{
-                    color: #707070;
-                    max-width: 280px;
-                    margin: 0 auto;
-                    font-weight: 700;
                 }
     
             }
