@@ -52,7 +52,7 @@ export const setAboutContentMixin = {
             this.setAdditionalSectionData = response.data[0].acf.additional_section
             this.setServicesSectionData = response.data[0].acf.services_section
             this.setBenefitsSectionData = response.data[0].acf.benefits_section
-            console.log(this.setBenefitsSectionData);
+            console.log(this.setAdditionalSectionData);
 
             this.isAboutLoading = false
         }
