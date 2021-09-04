@@ -1,10 +1,10 @@
 <template>
-    <header v-if="!loading" >
+    <header v-if="headerObject" >
         <div class="container">
             <div class="header-container">
                 <div class="site-logo">
                     <router-link to="/">
-                        <img :src="headerSiteLogo.url" :alt="headerSiteLogo.alt">
+                        <img :src="headerObject.acf.site_logo.url" :alt="headerObject.acf.site_logo.alt">
                         <span class="company-title">FRIENDLY CABS</span>
                     </router-link>
                 </div>
@@ -24,7 +24,7 @@
                                 <div class="phone-icon">
                                     <PhoneIcon />
                                 </div>
-                                <div class="details-text" v-html="headerPhoneDetails"></div>
+                                <div class="details-text" v-html="headerObject.acf.additional_details.text"></div>
                             </a>
                         </div>
                     </div>
@@ -35,9 +35,10 @@
 </template>
 
 <script>
-import axios from 'axios'
 import Menu from './Menu'
 import PhoneIcon from '../../icons/PhoneIcon'
+
+import store from '../../../store/shared_state'
 
 export default {
     name: 'Header',
@@ -47,28 +48,17 @@ export default {
     },
     data() {
         return {
-            loading: true,
-            headerSiteLogo: [],
-            headerPhoneDetails: null,
             navMenuOpen: false
         }
     },
-    created() {
-        this.fetchHeader()
-    },
     computed: {
+        headerObject() { return store.state.headerContent },
         phoneNumber() {
-            const getPhoneNumber = /<strong>(.*?)<\/strong>/g.exec(this.headerPhoneDetails);
+            const getPhoneNumber = /<strong>(.*?)<\/strong>/g.exec(this.headerObject.acf.additional_details.text);
             return 'tel:'+getPhoneNumber[1]
         }
     },
     methods: {
-        async fetchHeader() {
-            const response = await axios.get('/wp-json/wp/v2/menus?slug=header')
-            this.headerSiteLogo = response.data[0].acf.site_logo
-            this.headerPhoneDetails = response.data[0].acf.additional_details.text
-            this.loading = false
-        },
         openNavMenu() {
             this.navMenuOpen = !this.navMenuOpen
 

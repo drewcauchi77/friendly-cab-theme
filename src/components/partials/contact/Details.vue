@@ -1,10 +1,10 @@
 <template>
-    <section class="details-section" v-if="!isContactLoading">
+    <section class="details-section" v-if="contactObject">
         <div class="container">
-            <div class="section-title lower-below-text-border" v-html="setContactSectionData.title"></div>
+            <div class="section-title lower-below-text-border" v-html="contactObject.acf.contact_section.title"></div>
 
             <div class="contact-details">
-                <div class="single-contact" v-for="(detail, index) in setContactSectionData.contact_details" :key="index">
+                <div class="single-contact" v-for="(detail, index) in contactObject.acf.contact_section.contact_details" :key="index">
                     <div class="icon">
                         <img :src="detail.detail.icon.url" :alt="detail.detail.icon.alt">
                     </div>
@@ -20,10 +20,12 @@
 </template>
 
 <script>
-import { setContactContentMixin } from '../../../mixins'
+import store from '../../../store/shared_state'
 
 export default {
     name: 'Details',
-    mixins: [setContactContentMixin]
+    computed: {
+        contactObject() { return store.state.contactContent }
+    }
 }
 </script>

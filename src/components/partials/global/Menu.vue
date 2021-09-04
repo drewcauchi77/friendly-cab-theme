@@ -1,9 +1,9 @@
 <template >
-    <nav class="navigation-menu" v-if="!loading">
-        <div v-if="allMenuItems.title" v-html="allMenuItems.title"></div>
+    <nav class="navigation-menu" v-if="menuObject">
+        <div v-if="menuObject.acf.main_menu.title" v-html="menuObject.acf.main_menu.title"></div>
 
         <ul class="container list-container">
-            <li v-for="item in allMenuItems.item" :key="item.name">
+            <li v-for="item in menuObject.acf.main_menu.item" :key="item.name">
                 <router-link :to="item.link">
                     <span>{{item.name}}</span>
                 </router-link>
@@ -13,27 +13,25 @@
 </template>
 
 <script>
-import axios from 'axios'
+import store from '../../../store/shared_state'
 
 export default {
-    name: 'Menu',  
-    data() {
-        return {
-            loading: true,
-            allMenuItems: []
-        }
-    },
+    name: 'Menu',
     props: {
         slug: String
     },
-    created() {
-        this.fetchMenuItems()
-    },
-    methods: {
-        async fetchMenuItems() {
-            const response = await axios.get('/wp-json/wp/v2/menus?slug='+this.slug)
-            this.allMenuItems = response.data[0].acf.main_menu
-            this.loading = false
+    computed: {
+        menuObject() {
+            switch(this.slug) {
+                case 'header':
+                    return store.state.headerContent
+                    break
+                case 'footer':
+                    return store.state.footerContent
+                    break
+                default:
+                    return 0
+            }
         }
     }
 }

@@ -1,10 +1,10 @@
 <template>
-    <section class="services-section" v-if="!loading">
+    <section class="services-section" v-if="servicesListObject">
         <div class="services-container container">
-            <div v-if="allServicesContent.title" class="section-title text-center lower-below-text-border" v-html="allServicesContent.title"></div>
+            <div v-if="servicesListObject.acf.services_section.title" class="section-title text-center lower-below-text-border" v-html="servicesListObject.acf.services_section.title"></div>
 
             <div class="services-list">
-                <div class="single-service" v-for="(service, index) in allServicesContent.services" :key="index">
+                <div class="single-service" v-for="(service, index) in servicesListObject.acf.services_section.services" :key="index">
                     <div class="image-link" @click="openModal(index)" :style="{ backgroundImage: 'url(' + service.service.acf.image.url + ')' }">  </div>
 
                     <div class="service-details">
@@ -17,7 +17,7 @@
         </div>
 
         <div class="modals">
-            <transition name="fade" v-for="(service, index) in allServicesContent.services" :key="index">
+            <transition name="fade" v-for="(service, index) in servicesListObject.acf.services_section.services" :key="index">
                 <div class="modal" v-if="showModal == index">
                     <div class="underlay" @click="closeModal"></div>
                     <div class="modal-content">
@@ -35,29 +35,33 @@
 </template>
 
 <script>
-import axios from 'axios'
+import store from '../../../store/shared_state'
 
 export default {
     name: 'ServicesSection',
     data() {
         return {
-            loading: true,
-            allServicesContent: [],
             showModal: null,
         }
     },
     props: {
         slug: String
     },
-    created() {
-        this.fetchServicesContent()
+    computed: {
+        servicesListObject() {
+            switch(this.slug) {
+                case 'about':
+                    return store.state.aboutContent
+                    break
+                case 'services':
+                    return store.state.servicesContent
+                    break
+                default: 
+                    return 0
+            }
+        }
     },
     methods: {
-        async fetchServicesContent() {
-            const response = await axios.get('/wp-json/wp/v2/pages?slug='+this.slug)
-            this.allServicesContent = response.data[0].acf.services_section
-            this.loading = false
-        },
         openModal(index) {
             this.showModal = index
         },

@@ -1,7 +1,7 @@
 <template>
-    <section class="contact-form-section" v-if="!isContactLoading">
+    <section class="contact-form-section" v-if="contactObject">
         <div class="container">
-            <div class="section-title lower-below-text-border" v-html="setFormSectionData.title"></div>
+            <div class="section-title lower-below-text-border" v-html="contactObject.acf.form_section.title"></div>
 
             <div class="contact-form-container" v-if="!isBot">
                 <form v-on:submit.prevent="onSubmit">
@@ -51,11 +51,10 @@
 
 <script>
 import axios from 'axios'
-import { setContactContentMixin } from '../../../mixins'
+import store from '../../../store/shared_state'
 
 export default {
     name: 'Form',
-    mixins: [setContactContentMixin],
     data() {
         return {
             loading: false,
@@ -68,6 +67,9 @@ export default {
             message: '',
             website: null
         }
+    },
+    computed: {
+        contactObject() { return store.state.contactContent }
     },
     methods: {
         onSubmit(e) {

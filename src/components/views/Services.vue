@@ -1,13 +1,11 @@
 <template>
-    <div class="services-content" v-if="!isServicesLoading">
+    <div class="services-content" v-if="servicesObject">
         <div class="page-content">
             <BannerSection v-bind:slug="'services'" />
-            <Cars />
-            <ServicesSection v-bind:slug="'services'" />
+            <Cars v-if="servicesObject.acf.cars_section.enable_section" />
+            <ServicesSection v-bind:slug="'services'" v-if="servicesObject.acf.services_section.enable_section" />
         </div>
     </div>
-
-    <Loading v-else />
 </template>
 
 <script>
@@ -15,19 +13,18 @@ import BannerSection from '../partials/global/BannerSection'
 import Cars from '../partials/services/Cars'
 import ServicesSection from '../partials/global/ServicesSection'
 
-import Loading from '../partials/global/Loading'
-
-import { setServicesContentMixin } from '../../mixins'
+import store from '../../store/shared_state'
 
 export default {
     name: 'Services',
     components: {
         BannerSection,
         Cars,
-        ServicesSection,
-        Loading
+        ServicesSection
     },
-    mixins: [setServicesContentMixin],
+    computed: {
+        servicesObject() { return store.state.servicesContent }
+    },
     metaInfo() {
         return {
             title: 'Friendly Cab - Services',

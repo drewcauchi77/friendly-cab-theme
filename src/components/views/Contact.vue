@@ -1,13 +1,11 @@
 <template>
-    <div class="contact-content" v-if="!isContactLoading">
+    <div class="contact-content" v-if="contactObject">
         <div class="page-content">
             <BannerSection v-bind:slug="'contact'" />
-            <Details v-if="setContactSectionData.enable_section" />
-            <Form />
+            <Details v-if="contactObject.acf.contact_section.enable_section" />
+            <Form v-if="contactObject.acf.form_section.enable_section" />
         </div>
     </div>
-
-    <Loading v-else />
 </template>
 
 <script>
@@ -15,19 +13,18 @@ import BannerSection from '../partials/global/BannerSection'
 import Details from '../partials/contact/Details'
 import Form from '../partials/contact/Form'
 
-import Loading from '../partials/global/Loading'
-
-import { setContactContentMixin } from '../../mixins'
+import store from '../../store/shared_state'
 
 export default {
     name: 'Contact',
     components: {
         BannerSection,
         Details,
-        Form,
-        Loading
+        Form
     },
-    mixins: [setContactContentMixin],
+    computed: {
+        contactObject() { return store.state.contactContent }
+    },
     metaInfo() {
         return {
             title: 'Friendly Cab - Contact',

@@ -1,9 +1,10 @@
 <template>
-    <div class="container" v-if="!isHomeLoading">
+    <div class="container" v-if="homeObject">
         <div class="testimonials-section">
-            <div class="section-title text-center lower-below-text-border" v-html="setTestimonialsSectionData.title"></div>
+            <div class="section-title text-center lower-below-text-border" v-html="homeObject.acf.testimonials_section.title"></div>
+
             <VueSlickCarousel v-bind="settings">
-               <div class="card" v-for="item in setTestimonialsSectionData.testimonials" :key="item.testimonial.ID">
+               <div class="card" v-for="item in homeObject.acf.testimonials_section.testimonials" :key="item.testimonial.ID">
                     <div class="inner-card">
                         <p class="normal-text feedback" v-html="item.testimonial.acf.content.feedback"></p>
                         <div class="user-section">
@@ -13,23 +14,23 @@
                         </div>
                     </div>
                </div>
+
                 <template #prevArrow>
-                    <div class="prevArrow">                        
-                    </div>
+                    <div class="prevArrow"></div>
                 </template>
                 
                 <template #nextArrow>
-                    <div class="nextArrow">                        
-                    </div>
+                    <div class="nextArrow"></div>
                 </template>
             </VueSlickCarousel>
+
         </div>
     </div>
 </template>
 
 <script>
-import { setHomeContentMixin } from '../../../mixins'
 import VueSlickCarousel from 'vue-slick-carousel'
+import store from '../../../store/shared_state'
 
 export default {
     name: 'Testimonials',
@@ -68,6 +69,8 @@ export default {
             },    
         }
     },
-    mixins: [setHomeContentMixin]
+    computed: {
+        homeObject() { return store.state.homeContent }
+    }
 }
 </script>

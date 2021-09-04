@@ -1,19 +1,30 @@
 <template>
     <main class="page-content">
-        <Header />
-        <router-view></router-view>
-        <Footer />
+        <Loading v-if="showLoader" />
+        
+        <div v-else-if="!showLoader">
+            <Header />
+            <router-view></router-view>
+            <Footer />
+        </div>
     </main>
 </template>
 
 <script>
+import store from './store/shared_state'
 import Header from './components/partials/global/Header'
 import Footer from './components/partials/global/Footer'
+
+import Loading from './components/partials/global/Loading'
 
 export default {
     components: {
         Header,
-        Footer
+        Footer,
+        Loading
+    },
+    computed: {
+        showLoader() { return store.state.showLoader }
     },
     metaInfo() {
         return {
