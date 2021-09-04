@@ -1,17 +1,17 @@
 <template>
-    <section class="cars-section" v-if="!isServicesLoading">
-        <div class="section-title text-center lower-below-text-border" v-html="setCarsSectionData.title"></div>
+    <section class="cars-section" v-if="servicesObject">
+        <div class="section-title text-center lower-below-text-border" v-html="servicesObject.acf.cars_section.title"></div>
 
         <div class="container">
             <div class="cars-content">
                 <div class="cars-header">
-                    <div class="car-selector" v-for="(car, index) in setCarsSectionData.cars" :key="index" @click="showCar = index" :class="{ active: (showCar == index) }">
+                    <div class="car-selector" v-for="(car, index) in servicesObject.acf.cars_section.cars" :key="index" @click="showCar = index" :class="{ active: (showCar == index) }">
                         <span>{{ car.car.post_title }}</span>
                     </div>
                 </div>
 
                 <div class="cars-main">
-                    <transition name="fade"  v-for="(car, index) in setCarsSectionData.cars" :key="index">
+                    <transition name="fade"  v-for="(car, index) in servicesObject.acf.cars_section.cars" :key="index">
                         <div class="single-car" v-if="showCar == index">
                             <h3>{{ car.car.post_title }}</h3>
 
@@ -53,11 +53,13 @@
 </template>
 
 <script>
-import { setServicesContentMixin } from '../../../mixins'
+import store from '../../../store/shared_state'
 
 export default {
     name: 'Cars',
-    mixins: [setServicesContentMixin],
+    computed: {
+        servicesObject() { return store.state.servicesContent }
+    },
     data() {
         return {
             showCar: 0,

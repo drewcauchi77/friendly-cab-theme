@@ -1,10 +1,10 @@
 <template>
-    <div class="why-choose-us-section" v-if="!isAboutLoading" :style="{ backgroundImage: 'url(' + setBenefitsSectionData.background.url + ')' }">
+    <div class="why-choose-us-section" v-if="aboutObject" :style="{ backgroundImage: 'url(' + aboutObject.acf.benefits_section.background.url + ')' }">
         <div class="container">
-            <h3 v-html="setBenefitsSectionData.tagline"></h3>
-            <h2 v-html="setBenefitsSectionData.title"></h2>
+            <h3 v-html="aboutObject.acf.benefits_section.tagline"></h3>
+            <h2 v-html="aboutObject.acf.benefits_section.title"></h2>
             <div class="three-col-section">
-                <div class="column" v-for="item in setBenefitsSectionData.benefits.benefits_list" :key="item.title">
+                <div class="column" v-for="item in aboutObject.acf.benefits_section.benefits.benefits_list" :key="item.title">
                     <img :src="item.icon.url" :alt="item.icon.alt"/>
                     <h3 class="white-title">{{item.title}}</h3>
                     <p class="grey-text" v-html="item.details"></p>
@@ -15,10 +15,12 @@
 </template>
 
 <script>
-import { setAboutContentMixin } from '../../../mixins'
+import store from '../../../store/shared_state'
 
 export default {
     name: 'Benefits',
-    mixins: [setAboutContentMixin]
+    computed: {
+        aboutObject() { return store.state.aboutContent }
+    }
 }
 </script>

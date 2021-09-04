@@ -1,7 +1,7 @@
 <template>
-    <section class="school-form-section" v-if="!isHomeLoading" id="school-form">
+    <section class="school-form-section" v-if="homeObject" id="school-form">
         <div class="container">
-            <div class="section-title lower-below-text-border" v-html="setSchoolFormSectionData.title"></div>
+            <div class="section-title lower-below-text-border" v-html="homeObject.acf.school_form_section.title"></div>
 
             <div class="school-form-container">
                 <form v-on:submit.prevent="sendApplication">
@@ -339,11 +339,10 @@
 
 <script>
 import axios from 'axios'
-import { setHomeContentMixin } from '../../../mixins'
+import store from '../../../store/shared_state'
 
 export default {
     name: 'SchoolForm',
-    mixins: [setHomeContentMixin],
     data() {
         return {
             currentStep: 1,
@@ -394,6 +393,9 @@ export default {
                 form_error: 'There has been an error processing your form. Please contact us or try again later.'
             }
         }
+    },
+    computed: {
+        homeObject() { return store.state.homeContent }
     },
     created() {
         this.fetchFormDetails()
