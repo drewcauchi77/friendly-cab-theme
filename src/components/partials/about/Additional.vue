@@ -1,19 +1,21 @@
 <template>
-     <div class="additional-section" v-if="!isAboutLoading">
+     <div class="additional-section" v-if="aboutObject">
         <div class="container">
-            <div v-html="setAdditionalSectionData.tagline"></div>
-            <div v-html="setAdditionalSectionData.title"></div>
-            <a class="button-blue" :href="setAdditionalSectionData.button.link">{{setAdditionalSectionData.button.text}}</a>
+            <div v-html="aboutObject.acf.additional_section.tagline"></div>
+            <div v-html="aboutObject.acf.additional_section.title"></div>
+            <a class="button-blue" :href="aboutObject.acf.additional_section.button.link">{{ aboutObject.acf.additional_section.button.text }}</a>
         </div>
     </div>
 </template>
 
 
 <script>
-import { setAboutContentMixin } from '../../../mixins'
+import store from '../../../store/shared_state'
 
 export default {
     name: 'Additional',
-    mixins: [setAboutContentMixin]
+    computed: {
+        aboutObject() { return store.state.aboutContent }
+    }
 }
 </script>

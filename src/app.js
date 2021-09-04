@@ -42,9 +42,11 @@ new Vue({
         contactObject() { return store.state.contactContent }
     },
     created() {
-        getContentObject().then((res) => {
+        getContentObject().then(res => {
             if(res === true) {
-                store.setShowLoader(false, 'init() -> created()')
+                setTimeout(function() { 
+                    store.setShowLoader(false, 'init() -> created()')
+                }, 1000);
             } else {
                 store.setShowError(true, 'init() -> created()')
             }
