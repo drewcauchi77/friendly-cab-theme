@@ -1,5 +1,5 @@
 <template>
-    <section class="details-section" v-if="contactObject">
+    <section class="details-section" v-if="contactObject" id="details">
         <div class="container">
             <div class="section-title lower-below-text-border" v-html="contactObject.acf.contact_section.title"></div>
 

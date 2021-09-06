@@ -1,6 +1,6 @@
 <template>
     <section class="cars-section" v-if="servicesObject">
-        <div class="section-title text-center lower-below-text-border" v-html="servicesObject.acf.cars_section.title"></div>
+        <div class="section-title text-center lower-below-text-border" v-html="servicesObject.acf.cars_section.title" id="cars" ></div>
 
         <div class="container">
             <div class="cars-content">

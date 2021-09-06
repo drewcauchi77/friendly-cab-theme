@@ -1,5 +1,5 @@
 <template>
-    <div class="why-choose-us-section" v-if="aboutObject" :style="{ backgroundImage: 'url(' + aboutObject.acf.benefits_section.background.url + ')' }">
+    <section class="why-choose-us-section" v-if="aboutObject" :style="{ backgroundImage: 'url(' + aboutObject.acf.benefits_section.background.url + ')' }">
         <div class="container">
             <h3 v-html="aboutObject.acf.benefits_section.tagline"></h3>
             <h2 v-html="aboutObject.acf.benefits_section.title"></h2>
@@ -11,7 +11,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>
