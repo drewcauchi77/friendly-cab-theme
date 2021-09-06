@@ -6,7 +6,7 @@
     <link rel="icon" type="image/x-icon" href="<?= get_template_directory_uri() ?>/dist/assets/favicon.ico"/>
     <?php wp_head(); ?>
 </head>
-<body>
+<body id="init">
 
     <div id="app"></div>
     <!-- Vue components will be built here -->

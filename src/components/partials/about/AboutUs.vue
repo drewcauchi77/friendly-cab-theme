@@ -1,5 +1,5 @@
 <template>
-    <div class="container about-us-section" v-if="aboutObject">
+    <section class="container about-us-section" v-if="aboutObject">
        <div class="few-words-section">
             <div v-html="aboutObject.acf.about_section.tagline"> </div>
             <div v-html="aboutObject.acf.about_section.title"> </div>
@@ -29,7 +29,7 @@
                 </div>
             </div>
        </div>
-    </div>
+    </section>
 </template>
 
 <script>

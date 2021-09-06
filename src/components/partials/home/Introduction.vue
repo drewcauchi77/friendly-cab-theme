@@ -5,7 +5,7 @@
                 <div class="inner-sec">
                     <h1 class="title">{{ homeObject.acf.introduction_section.title}}</h1>
                     <div class="tagline" v-html="homeObject.acf.introduction_section.tagline"></div>
-                    <a class="button-blue" :href="homeObject.acf.introduction_section.button.link">{{ homeObject.acf.introduction_section.button.text }}</a>
+                    <router-link class="button-blue" :to="homeObject.acf.introduction_section.button.link">{{ homeObject.acf.introduction_section.button.text }}</router-link>
                 </div>
             </div>
             <div class="right-section">

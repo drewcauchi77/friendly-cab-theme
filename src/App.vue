@@ -4,7 +4,9 @@
         
         <div v-else-if="!showLoader">
             <Header />
-            <router-view></router-view>
+            <transition name="slide-bottom">
+                <router-view></router-view>
+            </transition>
             <Footer />
         </div>
     </main>

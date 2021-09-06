@@ -30,6 +30,27 @@ Vue.use(VueMeta)
 
 Vue.config.productionTip = false
 
+router.beforeEach((to, from, next) => {
+    console.log(to)
+    if(to.hash !== '') {
+        setTimeout(function() {
+            window.scroll({
+                top: document.getElementById(to.hash.substring(1)).offsetTop - document.getElementById('site-header').offsetHeight - 45,
+                behavior: 'smooth'
+            });
+        }, 500);
+        next()
+    } else {
+        setTimeout(function() {
+            window.scroll({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }, 500);
+        next()
+    }
+})
+
 new Vue({
     router,
     data: {

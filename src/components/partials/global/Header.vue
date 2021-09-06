@@ -1,5 +1,5 @@
 <template>
-    <header v-if="headerObject" >
+    <header v-if="headerObject" id="site-header">
         <div class="container">
             <div class="header-container">
                 <div class="site-logo">
