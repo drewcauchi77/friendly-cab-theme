@@ -4,7 +4,7 @@ import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faMapMarkerAlt, faEnvelope, faPhoneAlt, faSuitcase, faUser, faFan } from '@fortawesome/free-solid-svg-icons'
+import { faMapMarkerAlt, faEnvelope, faPhoneAlt, faSuitcase, faUser, faFan, faArrowRight, faArrowLeft} from '@fortawesome/free-solid-svg-icons'
 import { faFacebook, faTwitter, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -15,6 +15,8 @@ import { getContentObject } from './helpers/service'
 
 library.add(faMapMarkerAlt)
 library.add(faEnvelope)
+library.add(faArrowRight)
+library.add(faArrowLeft)
 library.add(faPhoneAlt)
 library.add(faSuitcase)
 library.add(faUser)

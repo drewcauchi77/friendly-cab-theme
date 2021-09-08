@@ -35,6 +35,7 @@
         }
 
         .about-content{
+            margin-bottom: 50px;
             .about-header{
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr;
@@ -57,7 +58,12 @@
             }
             .about-main{
                 position: relative;
-                padding: 40px 0;       
+                padding: 40px 0;  
+                
+                .single-car{
+                    position: absolute;
+                }
+                
             }
         }
     }
