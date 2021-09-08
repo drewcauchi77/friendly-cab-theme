@@ -67,8 +67,13 @@ export default {
             }else{
                 document.documentElement.style.overflowY = 'auto'
             }
+
+            this.$router.beforeEach((to, from, next) => {
+                document.documentElement.style.overflowY = 'auto'
+                this.navMenuOpen = false
+                next()
+            })
         }
     }
-    
 }
 </script>
