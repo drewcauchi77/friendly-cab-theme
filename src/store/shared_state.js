@@ -1,5 +1,5 @@
 let store = {
-    debug: true,
+    debug: false,
     state: {
         showLoader: true,
         showError: false,

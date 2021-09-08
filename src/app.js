@@ -31,14 +31,18 @@ Vue.use(VueMeta)
 Vue.config.productionTip = false
 
 router.beforeEach((to, from, next) => {
-    console.log(to)
     if(to.hash !== '') {
-        setTimeout(function() {
-            window.scroll({
-                top: document.getElementById(to.hash.substring(1)).offsetTop - document.getElementById('site-header').offsetHeight - 45,
-                behavior: 'smooth'
-            });
-        }, 500);
+        var myVar = setInterval(function (){
+            if(store.state.showLoader == false){
+                setTimeout(function() {
+                    window.scroll({
+                        top: document.getElementById(to.hash.substring(1)).offsetTop - document.getElementById('site-header').offsetHeight - 45,
+                        behavior: 'smooth'
+                    });
+                }, 500);
+                clearInterval(myVar)
+            }
+        }, 200)
         next()
     } else {
         setTimeout(function() {
