@@ -13,6 +13,8 @@ import router from './router'
 import store from './store/shared_state'
 import { getContentObject } from './helpers/service'
 
+import VueAnalytics from 'vue-analytics';
+
 library.add(faMapMarkerAlt)
 library.add(faEnvelope)
 library.add(faArrowRight)
@@ -29,6 +31,11 @@ library.add(faLinkedin)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(VueSlickCarousel)
 Vue.use(VueMeta)
+
+Vue.use(VueAnalytics, {
+    id: 'UA-207169249-1',
+    router
+})
 
 Vue.config.productionTip = false
 
