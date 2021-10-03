@@ -1,0 +1,145 @@
+.testimonials-section{
+    padding-bottom: 120px;
+    .section-title{
+        padding-top: 40px;
+    }
+    .card{
+        .inner-card{
+            max-width: 78%;
+            max-width: 500px;
+            border-radius: 25px;
+            box-shadow: 0px 8px 15px -12px rgba(143,139,139,1);
+            -webkit-box-shadow: 0px 8px 15px -12px rgba(143,139,139,1);
+            -moz-box-shadow: 0px 8px 15px -12px rgba(143,139,139,1);
+            padding: 50px;
+            background: $white;
+            margin: 20px 35px;
+            
+
+            .feedback{
+                display: grid;
+                grid-template-rows: auto;
+            }
+
+            .user-section{
+                padding-top: 35px;
+                display: grid;
+                grid-template-columns: 60px 1fr;
+                grid-template-areas: 'img uname'
+                                     'img title';
+
+                img{
+                    grid-area: img;
+                    width: 60px;
+                    height: 60px;
+                    object-fit: cover;
+                    
+                }
+
+                h4{
+                    grid-area: uname;
+                    padding-left: 12px;
+                    align-self: self-end;
+                }
+
+                p{
+                    grid-area: title;
+                    padding-left: 12px;
+                    font-size: 13px;
+                }
+
+            }
+
+           
+        }
+    }
+
+    .prevArrow, .nextArrow{
+        background: $blue;
+        border: 2px solid $blue;
+        border-radius: 25px;
+        position: absolute;
+        top: auto;
+        margin: auto;
+        height: 50px;
+        bottom: -60px;
+        width: 50px;
+        cursor: pointer;
+        transition: 0.5s all;
+        &:hover{
+            background: $white;
+            svg{
+                color: $blue;
+            }
+        }
+    }
+
+    .slick-disabled{
+        background: rgba(20, 41, 169, 0.4);
+        border: 2px solid rgba(20, 41, 169, 0);
+        cursor: default;
+        &:hover{
+            background: rgba(20, 41, 169, 0.4);
+            border: 2px solid rgba(20, 41, 169, 0);
+            svg{
+                color: $white;
+            }
+        }
+    }
+
+    .prevArrow{
+        right: 75px;
+        left: 0;
+
+        svg{
+            color: $white;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+        }
+    }
+
+    .nextArrow{
+        left: 75px;
+        right: 0;
+
+        svg{
+            color: $white;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+        }
+    }
+}
+
+@media only screen and (min-width: $breakpointLarge){
+    .testimonials-section{
+        .section-title{
+            padding-top: 50px;
+        }
+        
+        padding-bottom: 120px;
+        .card{
+            .inner-card{
+                margin: 20px 70px 20px 3px;
+            }
+        }
+
+        .prevArrow{
+            left: auto;
+            right: 140px;
+        }
+    
+        .nextArrow{
+            left: auto;
+            right: 70px;
+        }
+
+    }
+}

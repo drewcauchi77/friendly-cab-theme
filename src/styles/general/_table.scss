@@ -1,0 +1,21 @@
+table{
+    width: 100%;
+    padding-bottom: 30px;
+    tr{
+        th, td{
+            padding: 12px 0px;
+            span{
+                font-weight: 600;
+            }
+        }
+        th{
+            border: 1px solid $black;
+        }
+    }
+}
+
+@media only screen and (min-width: $breakpointXLarge){
+    table{
+        padding-bottom: 50px;
+    }
+}

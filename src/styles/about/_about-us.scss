@@ -1,0 +1,158 @@
+.about-us-section{
+    display: grid;
+    padding: 50px 0;
+    grid-template-columns: 1fr;
+    grid-template-areas: 'img'
+                         'texts';
+
+    .few-words-section{
+        grid-area: texts;
+        position: relative;
+
+        h3{
+            padding-top: 47px;
+            color: $grey;
+            padding-bottom: 30px;
+            font-size: 12px;
+            strong{
+                color: $blue;
+            }
+        }
+
+        h2{
+            font-size: 32px;
+            
+        }
+
+        .text{
+            padding: 20px 0;
+        }
+
+        p{
+            color: $grey;
+            font-size: 12px;
+            padding-bottom: 30px;
+        }
+
+        .about-content{
+            margin-bottom: 50px;
+            .about-header{
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                .car-selector{
+                    height: 55px;
+                    color: $black;
+                    transition: 0.5s all;
+                    cursor: pointer;
+                    font-weight: bold;
+                    span{
+                        text-align: center;
+                        display: block;
+                        line-height: 55px;
+                    }
+                    &.active, &:hover{
+                        border-bottom: 2px solid $blue;
+                        color: $black;
+                    }
+                }
+            }
+            .about-main{
+                position: relative;
+                padding: 40px 0;  
+                
+                .single-car{
+                    position: absolute;
+                }
+                
+            }
+        }
+    }
+
+    .image-section{
+        grid-area: img;
+        height: 500px;
+        position: relative;
+
+        .inner-sec{
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            height: 100%;
+            width: fit-content;
+            min-width: 100%;
+            
+            img{
+                position: absolute;
+                object-fit: cover;
+                max-width: 100%;
+                max-height: 100%;
+                border-radius: 15px;
+                left: 0;
+                right: 0;
+                margin: auto;
+            }
+
+            .text{
+                text-align: center;
+                color: $white;
+                background: $blue;
+                border-radius: 50px;
+                font-weight: bold;
+                font-size: 20px;
+                width: 100px;
+                height: 100px;
+                position: absolute;
+                margin: auto;
+                left: 0;
+                right: 230px;
+                top: 50px;
+                bottom: auto;
+
+                p{
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    margin: auto;
+                    height: fit-content;
+                }
+            }
+        }
+    }
+
+}
+
+@media only screen and (min-width: $breakpointLarge){
+    .about-us-section{
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 'texts img';
+        min-height: 500px;
+        grid-column-gap: 100px;
+
+        .few-words-section{
+            h3{
+                font-size: 22px;
+            }
+
+            h2{
+                font-size: 70px;
+            }
+
+            p{
+                font-size: 22px;
+                padding-bottom: 50px;
+            }
+        }
+
+        .image-section{
+            height: 100%;
+
+            .inner-sec{
+                .text{
+                    left: 100px;
+                    right: auto;
+                }
+            }
+        }
+    }
+}

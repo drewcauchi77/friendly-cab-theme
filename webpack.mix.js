@@ -12,6 +12,15 @@ mix.setPublicPath('dist')
   .copyDirectory('src/assets', 'dist/assets')
   .options({
     processCssUrls: false,
-    uglify: true
+    uglify: {
+      uglifyOptions: {
+        compress: true,
+        mangle: true,
+        output: {
+          comments: false,
+          beautify: false,
+        }
+      },
+    }
   })
   .version();
