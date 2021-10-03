@@ -3,8 +3,11 @@ import VueMeta from 'vue-meta'
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 
+import * as Sentry from "@sentry/vue";
+import { Integrations } from "@sentry/tracing";
+
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faMapMarkerAlt, faEnvelope, faPhoneAlt, faSuitcase, faUser, faFan, faArrowRight, faArrowLeft} from '@fortawesome/free-solid-svg-icons'
+import { faMapMarkerAlt, faEnvelope, faPhoneAlt, faSuitcase, faUser, faFan, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { faFacebook, faTwitter, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -40,9 +43,9 @@ Vue.use(VueAnalytics, {
 Vue.config.productionTip = false
 
 router.beforeEach((to, from, next) => {
-    if(to.hash !== '') {
-        var myVar = setInterval(function (){
-            if(store.state.showLoader == false){
+    if (to.hash !== '') {
+        var myVar = setInterval(function() {
+            if (store.state.showLoader == false) {
                 setTimeout(function() {
                     window.scroll({
                         top: document.getElementById(to.hash.substring(1)).offsetTop - document.getElementById('site-header').offsetHeight - 45,
@@ -64,6 +67,18 @@ router.beforeEach((to, from, next) => {
     }
 })
 
+Sentry.init({
+    Vue,
+    dsn: "https://dd049b7440bd4a1d91098fe6b54f7a1b@o1023906.ingest.sentry.io/5990080",
+    integrations: [
+        new Integrations.BrowserTracing({
+            routingInstrumentation: Sentry.vueRouterInstrumentation(router),
+            tracingOrigins: ["friendlycab.com.mt", /^\//],
+        }),
+    ],
+    tracesSampleRate: 1.0,
+});
+
 new Vue({
     router,
     data: {
@@ -77,8 +92,8 @@ new Vue({
     },
     created() {
         getContentObject().then(res => {
-            if(res === true) {
-                setTimeout(function() { 
+            if (res === true) {
+                setTimeout(function() {
                     store.setShowLoader(false, 'init() -> created()')
                 }, 1000);
             } else {

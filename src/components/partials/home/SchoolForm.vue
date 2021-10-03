@@ -340,6 +340,7 @@
 <script>
 import axios from 'axios'
 import store from '../../../store/shared_state'
+import emailjs from 'emailjs-com'
 
 export default {
     name: 'SchoolForm',
@@ -446,6 +447,12 @@ export default {
                         "address_of_parentguardian": this.parentguardian_info.address_of_parentguardian
                     }
                 }
+            }
+
+            try {
+                emailjs.send('service_uteqphw', 'template_1cveedq', e.target, 'user_iNJ5dF8dJRKWC1Xz7nhd7');
+            } catch (error) {
+                console.error(error)
             }
 
             axios.post('/wp-json/wp/v2/schoolapplications', gatheredData)
