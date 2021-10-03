@@ -52,6 +52,7 @@
 <script>
 import axios from 'axios'
 import store from '../../../store/shared_state'
+import emailjs from 'emailjs-com'
 
 export default {
     name: 'Form',
@@ -88,6 +89,17 @@ export default {
                         "email": this.email,
                         "message": this.message 
                     }
+                }
+
+                try {
+                    emailjs.sendForm('service_uteqphw', 'template_u9rxr31', e.target, 'user_iNJ5dF8dJRKWC1Xz7nhd7', {
+                        name: this.name,
+                        phone: this.phone,
+                        email: this.email,
+                        message: this.message
+                    })
+                } catch(error) {
+                    console.error(error)
                 }
 
                 axios.post('/wp-json/wp/v2/contactforms', gatheredData)

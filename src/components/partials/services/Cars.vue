@@ -37,12 +37,12 @@
                             <div class="car-image">
                                 <img v-if="car.car.acf.image" :src="car.car.acf.image.url" :alt="car.car.acf.image.alt">
 
-                                <div class="price">
+                                <!-- <div class="price">
                                     <div class="inner-price-text">
                                         <span class="per-km">/km</span>
                                         <span class="car-price"><strong>&euro;</strong>{{ car.car.acf.price_per_km }}</span>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </transition>
