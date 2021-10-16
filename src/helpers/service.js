@@ -18,6 +18,7 @@ const getContentObject = () => new Promise((resolve) => {
         
         axios.get('/wp-json/wp/v2/pages?slug=about').then(function(response) {
             store.setAboutContent(response.data[0], 'getContentObject()')
+            console.log(response.data[0]);
         })
 
         axios.get('/wp-json/wp/v2/pages?slug=services').then(function(response) {

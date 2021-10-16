@@ -1,0 +1,91 @@
+.our-story-section{
+    margin-bottom: 80px;
+    h2, h3, p{
+        text-align: center;
+    }
+
+    h2, h3{
+        margin-bottom: 30px;
+        p{
+            margin: 0;
+        }
+    }
+
+    p{
+        margin-bottom: 50px;
+    }
+
+    .card{
+        .inner-card{
+            img{
+                width: 90%;
+                margin: 0 auto;
+                height: 300px;
+                object-fit: cover;
+            }
+        }
+    }
+
+    .prevArrow, .nextArrow{
+        background: $blue;
+        border: 2px solid $blue;
+        border-radius: 25px;
+        position: absolute;
+        top: auto;
+        margin: auto;
+        height: 50px;
+        bottom: -75px;
+        width: 50px;
+        cursor: pointer;
+        transition: 0.5s all;
+        &:hover{
+            background: $white;
+            svg{
+                color: $blue;
+            }
+        }
+    }
+
+    .slick-disabled{
+        background: rgba(20, 41, 169, 0.4);
+        border: 2px solid rgba(20, 41, 169, 0);
+        cursor: default;
+        &:hover{
+            background: rgba(20, 41, 169, 0.4);
+            border: 2px solid rgba(20, 41, 169, 0);
+            svg{
+                color: $white;
+            }
+        }
+    }
+
+    .prevArrow{
+        right: 75px;
+        left: 0;
+
+        svg{
+            color: $white;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+        }
+    }
+
+    .nextArrow{
+        left: 75px;
+        right: 0;
+
+        svg{
+            color: $white;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+        }
+    }
+}

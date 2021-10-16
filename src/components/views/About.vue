@@ -3,6 +3,7 @@
         <div class="page-content">
             <BannerSection v-bind:slug="'about'" />
             <AboutUs v-if="aboutObject.acf.about_section.enable_section" />
+            <OurStory v-if="aboutObject.acf.our_story_section.enable_section" />
             <Benefits v-if="aboutObject.acf.benefits_section.enable_section" />
             <ServicesSection v-bind:slug="'about'" v-if="aboutObject.acf.services_section.enable_section" />
             <Additional v-if="aboutObject.acf.additional_section.enable_section" />
@@ -14,6 +15,7 @@
 import BannerSection from '../partials/global/BannerSection'
 import AboutUs from '../partials/about/AboutUs'
 import Benefits from '../partials/about/Benefits'
+import OurStory from '../partials/about/OurStory'
 import ServicesSection from '../partials/global/ServicesSection'
 import Additional from '../partials/about/Additional'
 
@@ -25,6 +27,7 @@ export default {
         BannerSection,
         AboutUs,
         Benefits,
+        OurStory,
         ServicesSection,
         Additional
     },
