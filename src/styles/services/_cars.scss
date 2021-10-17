@@ -13,6 +13,7 @@
                 border: .5px solid $white;
                 transition: 0.5s all;
                 cursor: pointer;
+                font-size: 12px;
                 span{
                     text-align: center;
                     display: block;
@@ -75,6 +76,8 @@
                     img{
                         width: 100%;
                         height: auto;
+                        max-height: 250px;
+                        object-fit: contain;
                     }
                     .price{
                         height: 70px;
@@ -178,7 +181,7 @@
     .cars-section{
         .cars-content{
             .cars-header{
-                grid-template-columns: repeat(6, 1fr);
+                grid-template-columns: repeat(7, 1fr);
             }
             .cars-main{
                 width: 90%;

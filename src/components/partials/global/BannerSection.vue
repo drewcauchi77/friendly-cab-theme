@@ -1,8 +1,8 @@
 <template>
     <section class="banner-section" v-if="bannerObject" :style="{ backgroundImage: 'url(' + bannerObject.acf.banner_section.background.url + ')' }">
         <div class="banner-container container">
-            <h2>{{ bannerObject.acf.banner_section.tagline }}</h2>
             <h1>{{ bannerObject.acf.banner_section.title }}</h1>
+            <h2>{{ bannerObject.acf.banner_section.tagline }}</h2>
         </div>
     </section>
 </template>

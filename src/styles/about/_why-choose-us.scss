@@ -48,6 +48,7 @@
                 img{
                     padding-bottom: 16px;
                     min-height: 90px;
+                    max-height: 140px;
                 }
     
                 .white-title{
@@ -60,6 +61,8 @@
         }
     }
 }
+
+
 
 @media only screen and (min-width: $breakpointMedium){
     .why-choose-us-section{
