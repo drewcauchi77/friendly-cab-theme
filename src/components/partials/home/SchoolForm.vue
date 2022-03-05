@@ -178,7 +178,19 @@
                             <div class="consent-form-text" v-html="consent.consent_form.content"></div>
 
                             <div class="checkbox-container">
-                                <label for="consent_agreement">I agree to have read and understood <strong>{{ consent.consent_form.title }}</strong></label>
+                                <label for="consent_agreement" v-if="index == 0">
+                                    By clicking this box you are confirming that you have read the above and that you are agreeing to the data processing by the Provider and MEDS for scholastic year 2022/2023 for the purposes of making use of the free school transport scheme provided by MEDS.<br><br>
+                                    This agreement is valid for the entire duration of the scholastic year and you are NOT AUTHORIZED to change service provider for the scholastic year once this form is signed. 
+                                    Should this service provider fail in providing safe and professional school transport services, you are to contact the School Transport Section at MEDS (t. 2598 1888 / e. <a href="mailto:nonstateschooltransport.meds@gov.mt">nonstateschooltransport.meds@gov.mt</a>) to request a change in service provider.
+                                </label>
+
+                                <label for="consent_agreement" v-if="index == 1">
+                                    By clicking this box you are agreeing to the data processing by the Provider and MFED for scholastic year 2022/2023 for the purposes of making use of the free school transport scheme provided by MEDS.<br>
+                                    This agreement is valid for the entire duration of the scholastic year and you are NOT AUTHORIZED to change service provider or sign another form with another service provider for the scholastic year once this form is signed. Should your selected service provider fail in providing safe and professional school transport services, you are to contact the School Transport Section at MEDS (t. 2598 1888 / e. <a href="mailto:nonstateschooltransport.meds@gov.mt">nonstateschooltransport.meds@gov.mt</a>) to request a change in service provider.<br><br>
+                                    I HEREBY DECLARE THAT I HAVE NOT SIGNED ANY OTHER FORM A AND FORM B (THIS ALSO REFERS TO ANY ONLINE APPLICATION RELATING TO FREE SCHOOL TRANSPORT OFFERED BY MEDS) WITH ANY OTHER SERVICE PROVIDER EXCEPT THAT OF FRIENDLY CAB FOR THE SCHOLASTIC YEAR 2022/2023.<br>
+                                    BY TICKING THIS BOX I HEREBY CONFIRM THAT I UNDERSTAND THE IMPLICATIONS AND CONTENTS OF THE ABOVE DECLARATION
+                                </label>
+
                                 <input type="checkbox" value="1" v-model="consent_info.consent_forms_agreement[index]" required>
                             </div>
                         </div>
